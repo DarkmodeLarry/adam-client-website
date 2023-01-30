@@ -25,6 +25,6 @@ export const verifyAuth = async (token: string) => {
     );
     return verified.payload as UserJwtPayload;
   } catch (error) {
-    throw new Error("Your token has expired.");
+    throw new Error("Your token has invalid.");
   }
 };

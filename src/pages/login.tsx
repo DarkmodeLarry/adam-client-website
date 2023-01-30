@@ -1,13 +1,13 @@
+import { useRouter } from "next/router";
 import type { ChangeEvent, FC } from "react";
 import { useState } from "react";
 import { HiLockClosed } from "react-icons/hi";
 import { trpc } from "../utils/trpc";
 import Image from "next/image";
-import { useRouter } from "next/router";
 
 interface loginProps {}
 
-const login: FC<loginProps> = () => {
+const login: FC<loginProps> = ({}) => {
   const router = useRouter();
 
   const [input, setInput] = useState({

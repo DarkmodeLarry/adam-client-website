@@ -1,7 +1,7 @@
 // middleware.ts
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { verifyAuth } from "./src/lib/auth";
+import { verifyAuth } from "./lib/auth";
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(req: NextRequest) {
