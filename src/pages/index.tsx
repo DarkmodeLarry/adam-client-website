@@ -5,6 +5,7 @@ import { useState } from "react";
 import { type DateTime } from "../utils/types";
 import Calendar from "../components/Calendar/";
 import Spinner from "../components/Spinner";
+import Menu from "../components/Menu";
 
 const Home: NextPage = () => {
   const [date, setDate] = useState<DateTime>({

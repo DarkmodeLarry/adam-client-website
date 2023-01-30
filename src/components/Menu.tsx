@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { type FC, useState } from "react";
 import { HiArrowLeft } from "react-icons/hi";
 import Select from "react-select";
-import { capitalize, selectOptions } from "src/utils/helper";
+import { capitalize, selectOptions } from "src/utils/helpers";
 import { trpc } from "src/utils/trpc";
 
 interface MenuProps {
