@@ -1,15 +1,14 @@
-import { format, parseISO } from 'date-fns'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { type FC, useState } from 'react'
-import { HiArrowLeft } from 'react-icons/hi'
 import Select from 'react-select'
 import { capitalize, selectOptions } from 'src/utils/helpers'
 import { trpc } from 'src/utils/trpc'
 
-interface MenuProps {}
+interface MenuProps {
+  selectedTime: string // as ISO String
+}
 
-const Menu: FC<MenuProps> = ({}) => {
+const Menu: FC<MenuProps> = ({ selectedTime }) => {
   const { data: menuItems } = trpc.menu.getMenuItems.useQuery()
   const [filter, setFilter] = useState<undefined | string>('')
 

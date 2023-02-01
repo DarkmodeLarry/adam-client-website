@@ -1,6 +1,6 @@
-// import type { Day } from "@prisma/client";
-import { add, addMinutes, getHours, getMinutes, isBefore, isEqual, parse } from 'date-fns'
 import { categories, now, OPENING_HOURS_INTERVAL } from 'src/constants/config'
+import { add, addMinutes, getHours, getMinutes, isBefore, isEqual, parse } from 'date-fns'
+import type { Day } from '@prisma/client'
 
 export const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
@@ -40,8 +40,8 @@ export const getOpeningTimes = (startDate: Date, dbDays: Day[]) => {
   const today = dbDays.find((d) => d.dayOfWeek === dayOfWeek)
   if (!today) throw new Error('This day does not exist in the database')
 
-  const opening = parse(today.openTime, 'kk:mm', startDate)
-  const closing = parse(today.closeTime, 'kk:mm', startDate)
+  const opening = parse(today.openTime, 'hh:mm', startDate)
+  const closing = parse(today.closeTime, 'hh:mm', startDate)
 
   let hours: number
   let minutes: number
@@ -62,10 +62,7 @@ export const getOpeningTimes = (startDate: Date, dbDays: Day[]) => {
   }
 
   const beginning = add(startDate, { hours, minutes })
-  const end = add(startDate, {
-    hours: getHours(closing),
-    minutes: getMinutes(closing)
-  })
+  const end = add(startDate, { hours: getHours(closing), minutes: getMinutes(closing) })
   const interval = OPENING_HOURS_INTERVAL
 
   // from beginning to end, every interval, generate a date and put that into an array

@@ -22,7 +22,7 @@ export const menuRouter = router({
   }),
 
   // logic check after user selects date and time
-  checkMenuStatus: publicProcedure.mutation(async () => {
+  checkMenuStatus: publicProcedure.query(async () => {
     // Handle menu checking logic
     await sleep(1000)
 

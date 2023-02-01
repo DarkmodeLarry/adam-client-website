@@ -62,7 +62,7 @@ export const adminRouter = router({
           },
           (err, data) => {
             if (err) return reject(err)
-            resolve(data)
+            resolve(data) // OR (SIGNED) lower case
           }
         )
       })) as any as { url: string; fields: any }
