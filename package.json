@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.10.5",
     "@headlessui/react": "^1.7.8",
     "@prisma/client": "^4.9.0",
+    "@stripe/stripe-js": "^1.46.0",
     "@tanstack/query-core": "^4.24.4",
     "@tanstack/react-query": "^4.24.4",
     "@trpc/client": "^10.9.1",
@@ -38,6 +39,7 @@
     "react-icons": "^4.7.1",
     "react-select": "^5.7.0",
     "sharp": "^0.31.3",
+    "stripe": "^11.8.0",
     "superjson": "1.9.1",
     "zod": "^3.20.2"
   },

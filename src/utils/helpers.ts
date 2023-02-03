@@ -40,8 +40,8 @@ export const getOpeningTimes = (startDate: Date, dbDays: Day[]) => {
   const today = dbDays.find((d) => d.dayOfWeek === dayOfWeek)
   if (!today) throw new Error('This day does not exist in the database')
 
-  const opening = parse(today.openTime, 'hh:mm', startDate)
-  const closing = parse(today.closeTime, 'hh:mm', startDate)
+  const opening = parse(today.openTime, 'hh:mm aa', startDate)
+  const closing = parse(today.closeTime, 'hh:mm aa', startDate)
 
   let hours: number
   let minutes: number

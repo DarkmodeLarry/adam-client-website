@@ -1,5 +1,5 @@
-import { type Categories } from '@types'
 import dynamic from 'next/dynamic'
+import { type Categories } from '@types'
 import Image from 'next/image'
 import { type ChangeEvent, type FC } from 'react'
 import { useEffect, useState } from 'react'
@@ -24,16 +24,10 @@ const initialInput = {
   file: undefined
 }
 
-const menu: FC<menuProps> = ({}) => {
+const Menu: FC = () => {
   const [input, setInput] = useState<Input>(initialInput)
   const [preview, setPreview] = useState<string>('')
   const [error, setError] = useState<string>('')
-
-  // tRPC
-  const { mutateAsync: createPresignedUrl } = trpc.admin.createPresignedUrl.useMutation()
-  const { mutateAsync: addItem } = trpc.admin.addMenuItem.useMutation()
-  const { data: menuItems, refetch } = trpc.menu.getMenuItems.useQuery()
-  const { mutateAsync: deleteMenuItem } = trpc.admin.deleteMenuItem.useMutation()
 
   useEffect(() => {
     // create the preview
@@ -45,10 +39,20 @@ const menu: FC<menuProps> = ({}) => {
     return () => URL.revokeObjectURL(objectUrl)
   }, [input.file])
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files?.[0]) return setError('No file selected')
-    if (e.target.files[0].size > MAX_FILE_SIZE) return setError('File too big')
-    setInput((prev) => ({ ...prev, file: e.target.files![0] }))
+  const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setInput((prev) => ({ ...prev, [name]: value }))
+  }
+
+  // tRPC
+  const { mutateAsync: createPresignedUrl } = trpc.admin.createPresignedUrl.useMutation()
+  const { mutateAsync: addItem } = trpc.admin.addMenuItem.useMutation()
+  const { data: menuItems, refetch } = trpc.menu.getMenuItems.useQuery()
+  const { mutateAsync: deleteMenuItem } = trpc.admin.deleteMenuItem.useMutation()
+
+  const handleDelete = async (imageKey: string, id: string) => {
+    await deleteMenuItem({ id, imageKey })
+    refetch()
   }
 
   const handleImageUpload = async () => {
@@ -98,14 +102,11 @@ const menu: FC<menuProps> = ({}) => {
     setInput(initialInput)
     setPreview('')
   }
-  // const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target
-  //   setInput((prev) => ({ ...prev, [name]: value }))
-  // }
 
-  const handleDelete = async (imageKey: string, id: string) => {
-    await deleteMenuItem({ id, imageKey })
-    refetch()
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files?.[0]) return setError('No file selected')
+    if (e.target.files[0].size > MAX_FILE_SIZE) return setError('File too big')
+    setInput((prev) => ({ ...prev, file: e.target.files![0] }))
   }
 
   return (
@@ -117,7 +118,7 @@ const menu: FC<menuProps> = ({}) => {
             className='h-12 rounded-sm border-none bg-gray-200'
             type='text'
             placeholder='name'
-            onChange={(e) => setInput((prev) => ({ ...prev, name: e.target.value }))}
+            onChange={handleTextChange}
             value={input.name}
           />
 
@@ -196,4 +197,4 @@ const menu: FC<menuProps> = ({}) => {
     </>
   )
 }
-export default menu
+export default Menu

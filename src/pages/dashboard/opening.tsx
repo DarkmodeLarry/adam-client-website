@@ -11,11 +11,11 @@ import { capitalize, classNames, weekdayIndexToName } from '../../utils/helpers'
 import { trpc } from 'src/utils/trpc'
 import { prisma } from '../../server/db/client'
 
-interface openingProps {
+interface OpeningProps {
   days: Day[]
 }
 
-const opening: FC<openingProps> = ({ days }) => {
+const Opening: FC<OpeningProps> = ({ days }) => {
   const [enabled, setEnabled] = useState<boolean>(false)
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 
@@ -164,4 +164,4 @@ export async function getServerSideProps() {
   return { props: { days } }
 }
 
-export default opening
+export default Opening

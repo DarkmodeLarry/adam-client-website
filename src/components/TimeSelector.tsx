@@ -14,7 +14,7 @@ function classNames(...classes: string[]) {
 }
 
 const timeOptions: string[] = []
-for (let i = 9; i < 17; i++) {
+for (let i = 5; i < 20; i++) {
   for (let j = 0; j < 60; j += 30) {
     const date = new Date()
     date.setHours(i, j)
