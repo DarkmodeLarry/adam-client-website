@@ -1,9 +1,16 @@
+'use client'
+import Header from '../scenes/header'
+import Hero from '../scenes/Home'
+import OurClasses from '../scenes/ourClasses'
+import ContactUs from '../scenes/contactUs'
+import Benefits from '../scenes/benefits'
+import { useState, useEffect } from 'react'
 import { type NextPage } from 'next'
-import Head from 'next/head'
-import Calendar from '../components/Calendar'
+import Calendar from '@components/Calendar'
 import { prisma } from '../server/db/client'
 import { formatISO } from 'date-fns'
 import type { Day } from '@prisma/client'
+import { SelectedPage } from '@/shared/types'
 
 interface HomeProps {
   days: Day[]
@@ -11,16 +18,35 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
+  const [selectedPage, setSelectedPage] = useState<SelectedPage>(SelectedPage.Home)
+  const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        setIsTopOfPage(true)
+        setSelectedPage(SelectedPage.Home)
+      }
+      if (window.scrollY !== 0) setIsTopOfPage(false)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <>
-      <Head>
-        <title>Booking Software</title>
-        <meta name='description' content='by SpLint3r' />
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
+      <Header
+        isTopOfPage={isTopOfPage}
+        selectedPage={selectedPage}
+        setSelectedPage={setSelectedPage}
+      />
 
       <main>
-        <Calendar days={days} closedDays={closedDays} />
+        <Hero setSelectedPage={setSelectedPage} />
+        <Benefits setSelectedPage={setSelectedPage} />
+        <OurClasses setSelectedPage={setSelectedPage} />
+        <ContactUs setSelectedPage={setSelectedPage} />
+        <Calendar setSelectedPage={setSelectedPage} days={days} closedDays={closedDays} />
       </main>
     </>
   )

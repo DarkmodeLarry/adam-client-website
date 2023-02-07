@@ -4,10 +4,13 @@ import { useState } from 'react'
 import { HiLockClosed } from 'react-icons/hi'
 import { trpc } from '../utils/trpc'
 import Image from 'next/image'
+import Dolphin1 from '../../public/dolphin-blue1.png'
+import Dolphin2 from '../../public/dolphin-blue2.png'
+import Dolphins from '../../public/dolphins.png'
 
-interface loginProps {}
+interface LoginProps {}
 
-const login: FC<loginProps> = ({}) => {
+const Login: FC<LoginProps> = ({}) => {
   const router = useRouter()
 
   const [input, setInput] = useState({
@@ -27,26 +30,19 @@ const login: FC<loginProps> = ({}) => {
   })
 
   return (
-    <div className='flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
-      <div className='w-full max-w-md space-y-8'>
+    <div className='loginPage relative flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 border-cyan-300'>
+      <div className='w-full max-w-md space-y-10 shadow-2xl border-2 border-transparent rounded-2xl px-10 pb-16'>
+        <Image
+          className='mx-auto w-auto absolute top-10 left-50'
+          src={Dolphins}
+          alt='Workflow'
+          height={200}
+          width={200}
+        />
         <div>
-          {/* If this was a real login screen, you'd want a next/image here */}
-          <Image
-            className='mx-auto h-12 w-auto'
-            src='https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg'
-            alt='Workflow'
-            height={100}
-            width={100}
-          />
           <h2 className='mt-6 text-center text-3xl font-bold text-gray-900'>
             Sign in to your account
           </h2>
-          <p className='mt-2 text-center text-sm text-gray-600'>
-            Or{' '}
-            <a href='#' className='font-medium text-indigo-600 hover:text-indigo-500'>
-              start your 14-day free trial
-            </a>
-          </p>
         </div>
         <form className='mt-8 space-y-6'>
           <input type='hidden' name='remember' defaultValue='true' />
@@ -92,7 +88,7 @@ const login: FC<loginProps> = ({}) => {
                 id='remember-me'
                 name='remember-me'
                 type='checkbox'
-                className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
+                className='h-4 w-4  py-10 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
               />
               <label htmlFor='remember-me' className='ml-2 block text-sm text-gray-900'>
                 Remember me
@@ -125,9 +121,15 @@ const login: FC<loginProps> = ({}) => {
             </button>
           </div>
         </form>
+        <p className='mt-2 text-center text-sm text-gray-600'>
+          Or{' '}
+          <a href='#' className='font-medium text-indigo-600 hover:text-indigo-500'>
+            Create your account instead
+          </a>
+        </p>
       </div>
     </div>
   )
 }
 
-export default login
+export default Login

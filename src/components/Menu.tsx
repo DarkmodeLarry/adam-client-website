@@ -68,7 +68,7 @@ const Menu: FC<MenuProps> = ({ selectedTime, addToCart }) => {
               </div>
 
               <button
-                className='mt-4 border-2 px-4 py-2 rounded-xl border-gray-700 hover:border-4 hover:border-green-400 duration-300'
+                className='btn mt-3'
                 onClick={() => {
                   addToCart(menuItem.id, 1)
                 }}

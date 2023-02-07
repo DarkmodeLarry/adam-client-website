@@ -1,6 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Montserrat:wght@700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .button {
+    @apply px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg 
+        active:scale-95 active:bg-gray-100 transition transform duration-100 ease-out;
+  }
+}
+
+:root {
+  --MenloFont: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+  --Nunito: 'Nunito Sans', sans-serif;
+  --radial: radial-gradient(circle farthest-corner, #becfcf, #70cbcb, #3e837b);
+  --pool: #53a4db;
+  --yellow: #ffffd6;
+  --dark: #062730;
+  --brown: #3f3f1a;
+  --light: #efeff5;
+  --Black: #0b162a;
+  --Beige: #eefaff;
+  --LightBlue: #abd6f3;
+  --BlueBlue: #53a4db;
+  --WhitWhite: #e8e8e8;
+  --RedPepper: #ff2f00;
+  --YellowNeon: #fff01f;
+  --Bluebonnet: #1f2eff;
+  --simplegray: #afafaf;
+  --graysaturated: #8f8f8f;
+  --greenneon: #1fff0f;
+  --greenbestneon: #46f953;
+  --aquaneon: #00f2de;
+  --aquaneonblue: #21f8f5a3;
+  --aquagreen: #00b89f;
+  --pastelaqua: #d5f6fb;
+  --vakanti: #062730;
+}
+
+.app {
+  height: 100%;
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  @apply text-gray-500;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+input,
+Link,
+button {
+  font-family: inherit;
+  color: var(--radial);
+  text-decoration: none;
+}
+
+.btn {
+  --color: var(--dark);
+  --bgcolor: var(--light);
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color);
+  background: var(--bgcolor);
+  border-radius: 0.66rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1.5rem -0.5rem currentColor;
+}
+
+.btn.btn-dark {
+  --color: var(--light);
+  --bgcolor: var(--dark);
+}
+
+.btn:hover,
+.btn:focus {
+  box-shadow: 0 0 0 2px var(--color), 0 0 0 4px var(--bgcolor);
+}
+.btn:active {
+  transform: scale(0.95);
+}
+
+::selection {
+  color: var(--light);
+  background: var(--red);
+}
 
 .closed-day {
   background-color: #550000;
@@ -15,4 +105,31 @@
 .closed-day:enabled:focus {
   background-color: #8a0000 !important;
   color: white;
+}
+
+.loginPage {
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color: hsla(188, 94%, 42%, 1);
+  background-image: radial-gradient(at 20% 0%, rgb(228, 247, 242) 5px, transparent 50%);
+}
+.adminPage {
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color: hsla(210, 76%, 48%, 1);
+  background-image: radial-gradient(at 80% 0%, rgb(224, 247, 242) 5px, transparent 50%);
+}
+
+.hero {
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color: hsla(188, 94%, 42%, 1);
+  background-image: radial-gradient(at 20% 0%, rgb(228, 247, 242) 5px, transparent 50%);
+}
+
+.calendar {
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color: hsla(210, 76%, 48%, 1);
+  background-image: radial-gradient(at 20% 0%, rgb(228, 247, 242) 5px, transparent 50%);
 }
