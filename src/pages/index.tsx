@@ -6,11 +6,11 @@ import ContactUs from '../scenes/contactUs'
 import Benefits from '../scenes/benefits'
 import { useState, useEffect } from 'react'
 import { type NextPage } from 'next'
-import Calendar from '@components/Calendar'
+import Calendar from '../components/Calendar'
 import { prisma } from '../server/db/client'
 import { formatISO } from 'date-fns'
 import type { Day } from '@prisma/client'
-import { SelectedPage } from '@/shared/types'
+import { SelectedPage } from '../shared/types'
 
 interface HomeProps {
   days: Day[]
@@ -46,7 +46,7 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
         <Benefits setSelectedPage={setSelectedPage} />
         <OurClasses setSelectedPage={setSelectedPage} />
         <ContactUs setSelectedPage={setSelectedPage} />
-        <Calendar setSelectedPage={setSelectedPage} days={days} closedDays={closedDays} />
+        <Calendar days={days} closedDays={closedDays} />
       </main>
     </>
   )

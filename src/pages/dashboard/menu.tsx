@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { type Categories } from '@types'
+import { type Categories } from '../../utils/types'
 import Image from 'next/image'
 import { type ChangeEvent, type FC } from 'react'
 import { useEffect, useState } from 'react'

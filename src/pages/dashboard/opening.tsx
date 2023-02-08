@@ -1,4 +1,3 @@
-import { Button } from '@chakra-ui/react'
 import TimeSelector from '@components/TimeSelector'
 import { Switch } from '@headlessui/react'
 import type { Day } from '@prisma/client'
@@ -20,13 +19,13 @@ const Opening: FC<OpeningProps> = ({ days }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 
   const [openingHrs, setOpeningHrs] = useState([
+    { name: 'sunday', openTime: days[0]!.openTime, closeTime: days[0]!.closeTime },
     { name: 'monday', openTime: days[1]!.openTime, closeTime: days[1]!.closeTime },
     { name: 'tuesday', openTime: days[2]!.openTime, closeTime: days[2]!.closeTime },
     { name: 'wednesday', openTime: days[3]!.openTime, closeTime: days[3]!.closeTime },
     { name: 'thursday', openTime: days[4]!.openTime, closeTime: days[4]!.closeTime },
     { name: 'friday', openTime: days[5]!.openTime, closeTime: days[5]!.closeTime },
-    { name: 'saturday', openTime: days[6]!.openTime, closeTime: days[6]!.closeTime },
-    { name: 'sunday', openTime: days[0]!.openTime, closeTime: days[0]!.closeTime }
+    { name: 'saturday', openTime: days[6]!.openTime, closeTime: days[6]!.closeTime }
   ])
 
   // tRPC
@@ -42,7 +41,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
 
   // Curried function
   function _changeTime(day: Day) {
-    return function (time: string, type: 'openTIme' | 'closeTime') {
+    return function (time: string, type: 'openTime' | 'closeTime') {
       const index = openingHrs.findIndex((x) => x.name === weekdayIndexToName(day.dayOfWeek))
       const newOpeningHrs = [...openingHrs]
       newOpeningHrs[index]![type] = time
@@ -109,7 +108,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
               </div>
             )
           })}
-          <Button
+          <button
             onClick={() => {
               const withId = openingHrs.map((day) => ({
                 ...day,
@@ -118,12 +117,12 @@ const Opening: FC<OpeningProps> = ({ days }) => {
 
               saveOpeningHrs(withId)
             }}
-            isLoading={isLoading}
-            colorScheme='green'
-            variant='solid'
+            // isLoading={isLoading}
+            // colorScheme='green'
+            // variant='solid'
           >
             Save
-          </Button>
+          </button>
         </div>
       ) : (
         // Opening days options
@@ -138,18 +137,18 @@ const Opening: FC<OpeningProps> = ({ days }) => {
             }}
           />
 
-          <Button
+          <button
             onClick={() => {
               if (dayIsClosed) openDay({ date: selectedDate })
               else if (selectedDate) closeDay({ date: selectedDate })
             }}
             disabled={!selectedDate}
-            isLoading={isLoading}
-            colorScheme='green'
-            variant='solid'
+            // isLoading={isLoading}
+            // colorScheme='green'
+            // variant='solid'
           >
             {dayIsClosed ? 'Open shop this day' : 'Close shop this day'}
-          </Button>
+          </button>
         </div>
       )}
     </div>

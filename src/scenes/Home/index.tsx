@@ -1,7 +1,7 @@
 import useMediaQuery from '../../hooks/useMediaQuery'
 import { SelectedPage } from '../../shared/types'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import HomePageGraphic from '../../../public/dolphins.png'
+import Dolphins from '../../../public/assets/dolphins.png'
 import HomePageText from '../../../public/assets/HomePageText.png'
 import { motion } from 'framer-motion'
 import ActionButton from '../../shared/ActionButton'
@@ -74,7 +74,7 @@ const Home = ({ setSelectedPage }: Props) => {
         <div className='flex basis-3/5 justify-center md:z-10 bg-transparent md:pb-24'>
           <Image
             alt='home-pageGraphic'
-            src={HomePageGraphic}
+            src={Dolphins}
             height={400}
             width={400}
             className='shadow-2xl bg-transparent rounded-full my-10'

@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { SelectedPage } from '@/shared/types'
+import { SelectedPage } from '../../shared/types'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import ContactUsPageGraphic from '../../../public/assets/AdamIllustration.png'

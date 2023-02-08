@@ -1,12 +1,11 @@
-import Spinner from '@components/Spinner'
+import Spinner from '../components/Spinner'
+import Image from 'next/image'
 import Link from 'next/link'
 import { type FC, useState, useEffect } from 'react'
 import { capitalize } from 'src/utils/helpers'
 import { trpc } from 'src/utils/trpc'
 
-interface successProps {}
-
-const success: FC<successProps> = ({}) => {
+const Success: FC = ({}) => {
   const [products, setProducts] = useState<{ id: string; quantity: number }[] | null | false>(null)
 
   // tRPC
@@ -36,7 +35,7 @@ const success: FC<successProps> = ({}) => {
   return (
     <main className='relative lg:min-h-full'>
       <div className='h-80 overflow-hidden lg:absolute lg:h-full lg:w-1/2 lg:pr-4 xl:pr-12'>
-        <img
+        <Image
           src='https://tailwindui.com/img/ecommerce-images/confirmation-page-06-hero.jpg'
           alt='TODO'
           className='h-full w-full object-cover object-center'
@@ -65,7 +64,7 @@ const success: FC<successProps> = ({}) => {
             >
               {itemsInCart?.map((item) => (
                 <li key={item.id} className='flex space-x-6 py-6'>
-                  <img
+                  <Image
                     src={item.url}
                     alt={item.name}
                     className='h-24 w-24 flex-none rounded-md bg-gray-100 object-cover object-center'
@@ -103,4 +102,4 @@ const success: FC<successProps> = ({}) => {
   )
 }
 
-export default success
+export default Success

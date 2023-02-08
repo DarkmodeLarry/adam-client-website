@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import NavLink from './NavLink'
 import { GiDolphin } from 'react-icons/gi'
-import { Menu, User, Moon, Globe, Search, Calendar } from 'react-feather'
+import { Menu, User, Calendar } from 'react-feather'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import { SelectedPage } from '../../shared/types'
-import ActionButton from '../../shared/ActionButton'
 import Link from 'next/link'
 
 type Props = {

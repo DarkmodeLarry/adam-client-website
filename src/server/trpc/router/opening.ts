@@ -12,7 +12,12 @@ export const openingRouter = router({
   changeOpeningHours: adminProcedure
     .input(
       z.array(
-        z.object({ id: z.string(), name: z.string(), openTime: z.string(), closeTime: z.string() })
+        z.object({
+          id: z.string(),
+          name: z.string(),
+          openTime: z.string(),
+          closeTime: z.string()
+        })
       )
     )
     .mutation(async ({ ctx, input }) => {
@@ -49,7 +54,7 @@ export const openingRouter = router({
   }),
 
   /**
-   * Method for closing a day, so no appointments can be made
+   * Method to open a previously closed day, so appointments can be made
    * @param date Date to open
    */
 
@@ -64,7 +69,7 @@ export const openingRouter = router({
   /**
    * Method to get all closed days
    * @returns Array of dates in ISO format
-   * @examples
+   * @example ['2023-01-18T09:00:00.000Z', '2023-01-19T09:00:00.000Z']
    */
 
   getClosedDays: adminProcedure.query(async ({ ctx }) => {
