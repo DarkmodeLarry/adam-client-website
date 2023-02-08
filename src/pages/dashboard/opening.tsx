@@ -29,7 +29,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
   ])
 
   // tRPC
-  const { mutate: saveOpeningHrs, isLoading } = trpc.opening.changeOpeningHours.useMutation({
+  const { mutate: saveOpeningHrs } = trpc.opening.changeOpeningHours.useMutation({
     onSuccess: () => toast.success('Opening hours saved'),
     onError: () => toast.error('Something went wrong')
   })
@@ -117,9 +117,6 @@ const Opening: FC<OpeningProps> = ({ days }) => {
 
               saveOpeningHrs(withId)
             }}
-            // isLoading={isLoading}
-            // colorScheme='green'
-            // variant='solid'
           >
             Save
           </button>
@@ -143,9 +140,6 @@ const Opening: FC<OpeningProps> = ({ days }) => {
               else if (selectedDate) closeDay({ date: selectedDate })
             }}
             disabled={!selectedDate}
-            // isLoading={isLoading}
-            // colorScheme='green'
-            // variant='solid'
           >
             {dayIsClosed ? 'Open shop this day' : 'Close shop this day'}
           </button>

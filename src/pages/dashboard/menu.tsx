@@ -1,14 +1,10 @@
-import dynamic from 'next/dynamic'
 import { type Categories } from '../../utils/types'
 import Image from 'next/image'
 import { type ChangeEvent, type FC } from 'react'
 import { useEffect, useState } from 'react'
 import type { MultiValue } from 'react-select/dist/declarations/src'
 import { MAX_FILE_SIZE } from 'src/constants/config'
-import { selectOptions } from 'src/utils/helpers'
 import { trpc } from 'src/utils/trpc'
-
-const DynamicSelect = dynamic(() => import('react-select'), { ssr: false })
 
 interface Input {
   name: string
@@ -60,7 +56,7 @@ const Menu: FC = () => {
     if (!file) return
 
     // get url from aws to upload file to:
-    const { fields, key, url } = await createPresignedUrl({
+    const { url, fields, key } = await createPresignedUrl({
       fileType: file.type
     })
 

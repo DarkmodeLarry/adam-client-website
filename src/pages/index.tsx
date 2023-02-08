@@ -1,7 +1,6 @@
 'use client'
 import Header from '../scenes/header'
 import Hero from '../scenes/Home'
-import OurClasses from '../scenes/ourClasses'
 import ContactUs from '../scenes/contactUs'
 import Benefits from '../scenes/benefits'
 import { useState, useEffect } from 'react'
@@ -44,7 +43,6 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
       <main>
         <Hero setSelectedPage={setSelectedPage} />
         <Benefits setSelectedPage={setSelectedPage} />
-        <OurClasses setSelectedPage={setSelectedPage} />
         <ContactUs setSelectedPage={setSelectedPage} />
         <Calendar days={days} closedDays={closedDays} />
       </main>
