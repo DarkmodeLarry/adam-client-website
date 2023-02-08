@@ -20,13 +20,13 @@ const Opening: FC<OpeningProps> = ({ days }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 
   const [openingHrs, setOpeningHrs] = useState([
-    { name: 'sunday', openTime: days[0]!.openTime, closeTime: days[0]!.closeTime },
     { name: 'monday', openTime: days[1]!.openTime, closeTime: days[1]!.closeTime },
     { name: 'tuesday', openTime: days[2]!.openTime, closeTime: days[2]!.closeTime },
     { name: 'wednesday', openTime: days[3]!.openTime, closeTime: days[3]!.closeTime },
     { name: 'thursday', openTime: days[4]!.openTime, closeTime: days[4]!.closeTime },
     { name: 'friday', openTime: days[5]!.openTime, closeTime: days[5]!.closeTime },
-    { name: 'saturday', openTime: days[6]!.openTime, closeTime: days[6]!.closeTime }
+    { name: 'saturday', openTime: days[6]!.openTime, closeTime: days[6]!.closeTime },
+    { name: 'sunday', openTime: days[0]!.openTime, closeTime: days[0]!.closeTime }
   ])
 
   // tRPC
