@@ -19,8 +19,8 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
     ? ''
     : 'bg-cyan-600 w-full rounded-full mt-4 drop-shadow opacity-90 px-5 transition-all  duration-300'
   return (
-    <nav>
-      <div className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-4`}>
+    <nav className='max-w-full px-2'>
+      <div className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-2`}>
         <div className={`${flexBetween} mx-auto w-11/12`}>
           <div className={`${flexBetween} w-full gap-36`}>
             {/* LEFT SIDE */}

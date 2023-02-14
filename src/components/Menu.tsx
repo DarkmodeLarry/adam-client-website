@@ -15,7 +15,7 @@ interface MenuProps {
 const Menu: FC<MenuProps> = ({ selectedTime, addToCart }) => {
   const router = useRouter()
 
-  const { data: menuItems } = trpc.menu.getMenuItems.useQuery(undefined, { refetchOnMount: false })
+  const { data: menuItems } = trpc.menu.getMenuItems.useQuery(undefined, { refetchOnMount: true })
   const [filter, setFilter] = useState<string | undefined>(undefined)
 
   const filteredMenuItems = menuItems?.filter((menuItem) => {
@@ -73,7 +73,7 @@ const Menu: FC<MenuProps> = ({ selectedTime, addToCart }) => {
                   addToCart(menuItem.id, 1)
                 }}
               >
-                Add to cart
+                Book it
               </button>
             </div>
           ))}
