@@ -12,8 +12,6 @@ type Props = {
 }
 
 const Home = ({ setSelectedPage }: Props) => {
-  const isAboveMediumScreens = useMediaQuery('(min-width:1060px)')
-
   return (
     <section id='home' className='md:min-h-fit gap-16 flex flex-col justify-between md:pt-36 hero'>
       {/* IMAGE AND MAIN HEADER */}

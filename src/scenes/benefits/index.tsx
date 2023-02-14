@@ -41,8 +41,6 @@ type Props = {
 }
 
 const Benefits = ({ setSelectedPage }: Props) => {
-  const isAboveMediumScreens = useMediaQuery('(min-width:1060px)')
-
   return (
     <section
       id='benefits'

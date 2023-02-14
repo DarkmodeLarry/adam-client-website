@@ -46,6 +46,7 @@ specifiers:
   react-calendar: ^4.0.0
   react-dom: 18.2.0
   react-feather: ^2.0.10
+  react-hook-form: ^7.43.1
   react-hot-toast: ^2.4.0
   react-icons: ^4.7.1
   react-select: ^5.7.0
@@ -82,6 +83,7 @@ dependencies:
   react-calendar: 4.0.0_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
   react-feather: 2.0.10_react@18.2.0
+  react-hook-form: 7.43.1_react@18.2.0
   react-hot-toast: 2.4.0_owo25xnefcwdq3zjgtohz6dbju
   react-icons: 4.7.1_react@18.2.0
   react-select: 5.7.0_57czaiyk6rdr5iy5tfs5pior4u
@@ -3361,6 +3363,15 @@ packages:
       react: '>=16.8.6'
     dependencies:
       prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
+  /react-hook-form/7.43.1_react@18.2.0:
+    resolution: {integrity: sha512-+s3+s8LLytRMriwwuSqeLStVjRXFGxgjjx2jED7Z+wz1J/88vpxieRQGvJVvzrzVxshZ0BRuocFERb779m2kNg==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
       react: 18.2.0
     dev: false
 
