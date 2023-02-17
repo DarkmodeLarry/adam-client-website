@@ -1,16 +1,14 @@
 import { useForm } from 'react-hook-form'
 import { SelectedPage } from '../../shared/types'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
-import ContactUsPageGraphic from '../../../public/assets/AdamIllustration.png'
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void
 }
 
 const ContactUs = ({ setSelectedPage }: Props) => {
-  const inputStyles = `mb-5 w-full rounded-lg bg-primary-300
-  px-5 py-3 placeholder-white`
+  const inputStyles = `mb-5 w-full rounded-lg bg-gray-900 shadow-2xl shadow-[#f2f2f2]]
+  px-5 py-3 placeholder-gray-400 text-white`
 
   const {
     register,
@@ -26,7 +24,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
   }
 
   return (
-    <section id='contactus' className='mx-auto w-5/6 pt-24 pb-32'>
+    <section id='contactus' className='mx-auto w-5/6 max-w-full h-full my-8'>
       <motion.div onViewportEnter={() => setSelectedPage(SelectedPage.ContactUs)}>
         {/* HEADER */}
         <motion.div
@@ -40,18 +38,13 @@ const ContactUs = ({ setSelectedPage }: Props) => {
             visible: { opacity: 1, x: 0 }
           }}
         >
-          <h1>
-            <span className='text-primary-500'>JOIN NOW</span> TO GET IN SHAPE
-          </h1>
-          <p className='my-5'>
-            Congue adipiscing risus commodo placerat. Tellus et in feugiat nisl sapien vel rhoncus.
-            Placerat at in enim pellentesque. Nulla adipiscing leo egestas nisi elit risus sit. Nunc
-            cursus sagittis.
-          </p>
+          <h1 className='text-primary-500'>DO YOU HAVE ANY QUESTIONS?</h1>
+
+          <p className='my-5'>Contact Adam for more information!</p>
         </motion.div>
 
         {/* FORM AND IMAGE */}
-        <div className='mt-10 justify-between gap-8 md:flex'>
+        <div className='mt-10 justify-between gap-8 md:flex '>
           <motion.div
             className='mt-10 basis-3/5 md:mt-0'
             initial='hidden'
@@ -72,7 +65,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
               <input
                 className={inputStyles}
                 type='text'
-                placeholder='NAME'
+                placeholder='Name'
                 {...register('name', {
                   required: true,
                   maxLength: 100
@@ -88,7 +81,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
               <input
                 className={inputStyles}
                 type='text'
-                placeholder='EMAIL'
+                placeholder='Email'
                 {...register('email', {
                   required: true,
                   pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
@@ -103,7 +96,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
 
               <textarea
                 className={inputStyles}
-                placeholder='MESSAGE'
+                placeholder='Message'
                 rows={4}
                 cols={50}
                 {...register('message', {
@@ -120,9 +113,9 @@ const ContactUs = ({ setSelectedPage }: Props) => {
 
               <button
                 type='submit'
-                className='mt-5 rounded-lg bg-secondary-500 px-20 py-3 transition duration-500 hover:text-white'
+                className='border-2 hover:bg-gray-400 hover:text-gray-900 transition-colors ease-in duration-150 rounded-lg px-3 py-2 bg-gray-900 text-white font-semibold tracking-widest'
               >
-                SUBMIT
+                SEND IT
               </button>
             </form>
           </motion.div>
@@ -138,9 +131,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
               visible: { opacity: 1, y: 0 }
             }}
           >
-            <div className='w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-evolvetext'>
-              <Image className='w-full' alt='contact-us-page-graphic' src={ContactUsPageGraphic} />
-            </div>
+            <div className='w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-evolvetext'></div>
           </motion.div>
         </div>
       </motion.div>

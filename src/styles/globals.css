@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Montserrat:wght@700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,40 +11,10 @@
   }
 }
 
-:root {
-  --MenloFont: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-  --Nunito: 'Nunito Sans', sans-serif;
-  --radial: radial-gradient(circle farthest-corner, #becfcf, #70cbcb, #3e837b);
-  --pool: #53a4db;
-  --yellow: #ffffd6;
-  --dark: #062730;
-  --brown: #3f3f1a;
-  --light: #efeff5;
-  --Black: #0b162a;
-  --Beige: #eefaff;
-  --LightBlue: #abd6f3;
-  --BlueBlue: #53a4db;
-  --WhitWhite: #e8e8e8;
-  --RedPepper: #ff2f00;
-  --YellowNeon: #fff01f;
-  --Bluebonnet: #1f2eff;
-  --simplegray: #afafaf;
-  --graysaturated: #8f8f8f;
-  --greenneon: #1fff0f;
-  --greenbestneon: #46f953;
-  --aquaneon: #00f2de;
-  --aquaneonblue: #21f8f5a3;
-  --aquagreen: #00b89f;
-  --pastelaqua: #d5f6fb;
-  --vakanti: #062730;
-}
-
 .app {
   height: 100%;
   width: 100%;
   font-family: 'DM Sans', sans-serif;
-  @apply text-gray-500;
 }
 
 body {
@@ -60,14 +30,13 @@ button {
 }
 
 .btn {
-  --color: var(--dark);
-  --bgcolor: var(--light);
+  color: #f2f2f2;
+  background-color: #444444;
   display: inline-block;
   white-space: nowrap;
   padding: 0.75rem 1.5rem;
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--color);
   background: var(--bgcolor);
   border-radius: 0.66rem;
   transition: all 0.2s;
@@ -75,13 +44,14 @@ button {
 }
 
 .btn.btn-dark {
-  --color: var(--light);
-  --bgcolor: var(--dark);
+  color: #444444;
+  background-color: #f2f2f2;
 }
 
 .btn:hover,
 .btn:focus {
-  box-shadow: 0 0 0 2px var(--color), 0 0 0 4px var(--bgcolor);
+  box-shadow: 0 0 0 2px #444444, 0 0 0 4px #444444;
+  color: #f2f2f2;
 }
 .btn:active {
   transform: scale(0.95);
@@ -90,6 +60,18 @@ button {
 ::selection {
   color: var(--light);
   background: var(--red);
+}
+
+.headingText {
+  font-family: 'Irish Grover', cursive;
+  font-size: 5rem;
+  text-align: center;
+}
+
+.headingName {
+  font-family: 'Irish Grover', cursive;
+  font-size: 3rem;
+  text-align: center;
 }
 
 .closed-day {
@@ -110,26 +92,21 @@ button {
 .loginPage {
   min-height: 100vh;
   max-height: 100vh;
-  background-color: hsla(188, 94%, 42%, 1);
+  background-color: hsla(199, 97%, 45%, 1);
   background-image: radial-gradient(at 20% 0%, rgb(228, 247, 242) 5px, transparent 50%);
 }
 .adminPage {
   min-height: 100vh;
   max-height: 100vh;
-  background-color: hsla(210, 76%, 48%, 1);
+  background-color: rgb(2, 48, 70);
   background-image: radial-gradient(at 80% 0%, rgb(224, 247, 242) 5px, transparent 50%);
 }
 
 .hero {
-  min-height: 100vh;
-  max-height: 100vh;
-  background-color: hsla(188, 94%, 42%, 1);
-  background-image: radial-gradient(at 20% 0%, rgb(228, 247, 242) 5px, transparent 50%);
+  background-color: rgb(48, 112, 142);
+  background-image: radial-gradient(at 10% 0%, rgb(228, 247, 242) 5px, transparent 40%);
 }
-
-.calendar {
-  min-height: 100vh;
-  max-height: 100vh;
-  background-color: hsla(210, 76%, 48%, 1);
-  background-image: radial-gradient(at 20% 0%, rgb(228, 247, 242) 5px, transparent 50%);
-}
+/* 
+Adam Gonzales
+Head Coach
+Adam was born in Anaheim, and raised in Fountain Valley, California. He began swimming at Green Valley at the age of 7 in 1996. He competed at Green Valley every summer from then until he turned 18. During his time at Green Valley he set numerous team records, and began to coach from ages 15-18. Upon graduating from Fountain Valley High School, Adam went on to swim under an athletic scholarship at UC Santa Barbara, where he got a Bachelors in Philosophy and a minor in Athletic Coaching. He continued to work for Green Valley during summer breaks from college. Once finished with school, he moved back to Orange County and began working as a full-time swimming coach, both for Green Valley and for Orange County Riptide Aquatics. He also ran the swim team at Ocean View High School. He then left Green Valley and spent a couple years working in the Monterey Bay area, as Head Coach for the Gilroy Gators Swim Team, before moving back to Southern California. Now that he is back in the Orange County area, he is excited to be back where it all began for him. */

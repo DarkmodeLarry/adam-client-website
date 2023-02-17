@@ -40,34 +40,36 @@ const CalendarComponent: FC<CalendarProps> = ({ days, closedDays }) => {
   const times = date.justDate && getOpeningTimes(date.justDate, days)
 
   return (
-    <section
-      id='calendar'
-      className='calendar flex h-screen flex-col items-center justify-center relative'
-    >
-      <p className='text-2xl pb-5'>Select Appointment</p>
-      {date.justDate ? (
-        <div className='flex max-w-lg flex-wrap gap-4'>
-          {times?.map((time, i) => (
-            <div key={`time-${i}`} className='rounded-sm bg-gray-100 p-2'>
-              <button
-                type='button'
-                className='hover:bg-cyan-400 px-3 py-2 bg-gray-200 rounded-full border-2 hover:border-2 hover:border-gray-100 transition-all duration-300 ease-out '
-                onClick={() => setDate((prev) => ({ ...prev, dateTime: time }))}
-              >
-                {format(time, 'hh:mm')}
-              </button>
-            </div>
-          ))}
+    <section id='calendar' className='calendar max-w-full min-h-full bg-gray-900 p-10'>
+      <p className='text-2xl text-gray-200 w-full text-center mb-10'>Select Appointment</p>
+      <div className='flex'>
+        <div className=' '>
+          <DynamicCalendar
+            minDate={now}
+            className='REACT-CALENDAR p-2'
+            view='month'
+            tileDisabled={({ date }) => closedDays.includes(formatISO(date))}
+            onClickDay={(date) => setDate((prev) => ({ ...prev, justDate: date }))}
+          />
         </div>
-      ) : (
-        <DynamicCalendar
-          minDate={now}
-          className='REACT-CALENDAR p-2'
-          view='month'
-          tileDisabled={({ date }) => closedDays.includes(formatISO(date))}
-          onClickDay={(date) => setDate((prev) => ({ ...prev, justDate: date }))}
-        />
-      )}
+        <div className='md:w-5/12 flex justify-center items-center relative w-full'>
+          <div className='md:border-l-2 md:absolute md:right-0 md:top-0 md:border-gray-200 md:h-72'></div>
+          <div className='gap-2 flex flex-wrap pl-8 h-64  justify-start items-center'>
+            {date.justDate &&
+              times?.map((time, i) => (
+                <div key={`time-${i}`} className=''>
+                  <button
+                    type='button'
+                    className='hover:bg-gray-200 w-16 h-8 flex flex-col justify-center items-center bg-gray-200 rounded-full border-2 hover:border-2 hover:border-gray-100 transition-all duration-300 ease-out '
+                    onClick={() => setDate((prev) => ({ ...prev, dateTime: time }))}
+                  >
+                    {format(time, 'hh:mm')}
+                  </button>
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
     </section>
   )
 }

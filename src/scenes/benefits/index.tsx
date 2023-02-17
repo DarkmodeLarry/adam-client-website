@@ -1,5 +1,4 @@
 import ActionButton from '../../shared/ActionButton'
-import useMediaQuery from '../../hooks/useMediaQuery'
 import HText from '../../shared/Heading'
 import { type BenefitType, SelectedPage } from '../../shared/types'
 import { Home, User, Feather } from 'react-feather'
@@ -44,7 +43,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
   return (
     <section
       id='benefits'
-      className='flex flex-col justify-center items-center min-h-full w-full p-4'
+      className='flex flex-col justify-center  min-h-full md:text-center w-full p-4'
     >
       <motion.div onViewportEnter={() => setSelectedPage(SelectedPage.Benefits)}>
         {/* HEADER */}

@@ -3,7 +3,7 @@ import NavLink from './NavLink'
 import { GiDolphin } from 'react-icons/gi'
 import { Menu, User, Calendar } from 'react-feather'
 import useMediaQuery from '../../hooks/useMediaQuery'
-import { SelectedPage } from '../../shared/types'
+import { type SelectedPage } from '../../shared/types'
 import Link from 'next/link'
 
 type Props = {
@@ -17,7 +17,7 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)')
   const navbarBackground = isTopOfPage
     ? ''
-    : 'bg-cyan-600 w-full rounded-full mt-4 drop-shadow opacity-90 px-5 transition-all  duration-300'
+    : 'bg-gray-900 w-full rounded-full mt-4 drop-shadow opacity-90 px-5 transition-all  duration-300'
   return (
     <nav className='max-w-full px-2'>
       <div className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-2`}>
@@ -56,11 +56,11 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                 </div>
                 <div className='flex gap-4 text-xl font-semibold text-gray-200'>
                   <Link href='/login' className={`${flexBetween} gap-8`}>
-                    <p className='font-semibold hover:shadow-2xl hover:border-2 hover:rounded-2xl hover:px-3 hover:py-2 transition-all'>
+                    <p className='font-semibold hover:shadow-2xl hover:border-2 hover:rounded-2xl px-3 py-2 transition-all hover:text-yellow-400'>
                       Sign In
                     </p>
                   </Link>
-                  <div className='flex gap-3 hover:border-2 hover:border-white hover:p-2 hover:rounded-full hover:text-yellow-400 transition-all duration-150'>
+                  <div className='flex gap-3 p-2 border-2 border-transparent hover:border-2 hover:border-white hover:rounded-xl hover:text-yellow-400 transition-all duration-150'>
                     <NavLink
                       page='Calendar'
                       selectedPage={selectedPage}

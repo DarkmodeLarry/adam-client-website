@@ -1,8 +1,7 @@
-import useMediaQuery from '../../hooks/useMediaQuery'
 import { SelectedPage } from '../../shared/types'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import Dolphins from '../../../public/assets/dolphins.png'
-import HomePageText from '../../../public/assets/HomePageText.png'
+import Adam from '../../../public/Adam.png'
+import Dolphins from '../../../public/dolphins.png'
 import { motion } from 'framer-motion'
 import ActionButton from '../../shared/ActionButton'
 import Image from 'next/image'
@@ -13,41 +12,46 @@ type Props = {
 
 const Home = ({ setSelectedPage }: Props) => {
   return (
-    <section id='home' className='md:min-h-fit gap-16 flex flex-col justify-between md:pt-36 hero'>
+    <section
+      id='home'
+      className='flex flex-col justify-between items-center scrollbar-hide py-24 hero'
+    >
       {/* IMAGE AND MAIN HEADER */}
       <motion.div
-        className='mx-auto w-5/6 items-center justify-center md:flex md:h-5/6'
+        className='flex items-center justify-center'
         onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
       >
         {/* MAIN HEADER */}
-        <div className='z-10 mt-32 md:mt-16 md:basis-3/5'>
+        <div className='mt-16'>
           {/* HEADINGS */}
           <motion.div
             className='md:-mt-20'
             initial='hidden'
             whileInView='visible'
             viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             variants={{
               hidden: { opacity: 0, x: -100 },
               visible: { opacity: 1, x: 0 }
             }}
           >
-            <div className='relative'>
-              <div className='before:absolute before:-top-20 before:-left-20 before:z-[-1] md:before:content-evolvetext bg-transparent'>
-                <Image alt='home-page-text' src={HomePageText} className='' />
+            <div className='flex flex-col '>
+              <h1 className='headingText'>Keep Swimming</h1>
+              {/* IMAGES */}
+              <div className='flex mt-5'>
+                <Image alt='home-pageGraphic' src={Adam} className='' />
+                <p className='headingName text-center'>With Coach Adam</p>
+                <Image src={Dolphins} alt='dolphins' className='hidden md:block' />
               </div>
             </div>
-
-            <p className='mt-8 text-md text-white text-center md:text-left'>
-              Unrivaled Gym. Unparalleled Training Fitness Classes. World Class Studios to get the
-              Body Shapes That you Dream of.. Get Your Dream Body Now.
+            <p className='mt-8 text-lg w-full text-white text-center '>
+              Skill. Fitness. Confidence. Leadership. Empowerment. Teamwork.{' '}
             </p>
           </motion.div>
 
           {/* ACTIONS */}
           <motion.div
-            className='mt-8 flex items-center gap-8'
+            className='flex items-center gap-8 w-full justify-center py-8'
             initial='hidden'
             whileInView='visible'
             viewport={{ once: true, amount: 0.5 }}
@@ -66,17 +70,6 @@ const Home = ({ setSelectedPage }: Props) => {
               <p>Learn More</p>
             </AnchorLink>
           </motion.div>
-        </div>
-
-        {/* IMAGE */}
-        <div className='flex basis-3/5 justify-center md:z-10 bg-transparent md:pb-24'>
-          <Image
-            alt='home-pageGraphic'
-            src={Dolphins}
-            height={400}
-            width={400}
-            className='shadow-2xl bg-transparent rounded-full my-10'
-          />
         </div>
       </motion.div>
     </section>

@@ -43,8 +43,8 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
       <main>
         <Hero setSelectedPage={setSelectedPage} />
         <Benefits setSelectedPage={setSelectedPage} />
-        <ContactUs setSelectedPage={setSelectedPage} />
         <Calendar days={days} closedDays={closedDays} />
+        <ContactUs setSelectedPage={setSelectedPage} />
       </main>
     </>
   )

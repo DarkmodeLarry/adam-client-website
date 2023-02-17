@@ -42,6 +42,7 @@
     "sharp": "^0.31.3",
     "stripe": "^11.8.0",
     "superjson": "1.9.1",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "zod": "^3.20.2"
   },
   "devDependencies": {
