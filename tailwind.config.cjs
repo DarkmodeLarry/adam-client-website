@@ -10,12 +10,6 @@ module.exports = {
       fontFamily: {
         dmsans: ['DM Sans', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif']
-      },
-      content: {
-        evolvetext: "url('/public/assets/EvolveText.png)",
-        abstractwaves: "url('/public/assets/AbstractWaves.png')",
-        sparkles: "url('/public/assets/Sparkles.png')",
-        circles: "url('/public/assets/Circles.png')"
       }
     },
     screens: {
