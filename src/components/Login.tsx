@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { HiLockClosed } from 'react-icons/hi'
 import { trpc } from '../utils/trpc'
 import Image from 'next/image'
-import Dolphin from '../../public/assets/dolphins.png'
+import Dolphin from '../../public/dolphins.png'
 
 const Login: FC = () => {
   const router = useRouter()
