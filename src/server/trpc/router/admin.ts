@@ -76,9 +76,7 @@ export const adminRouter = router({
         name: z.string(),
         price: z.number(),
         imageKey: z.string(),
-        categories: z.array(
-          z.union([z.literal('breakfast'), z.literal('lunch'), z.literal('dinner')])
-        )
+        categories: z.array(z.union([z.literal('private'), z.literal('group'), z.literal('other')]))
       })
     )
     .mutation(async ({ ctx, input }) => {

@@ -1,10 +1,14 @@
-import { type Categories } from '../../utils/types'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { type ChangeEvent, type FC } from 'react'
-import { useEffect, useState } from 'react'
 import type { MultiValue } from 'react-select/dist/declarations/src'
+import { useEffect, useState } from 'react'
+import { type Categories } from '../../utils/types'
 import { MAX_FILE_SIZE } from 'src/constants/config'
+import { selectOptions } from '../../utils/helpers'
 import { trpc } from 'src/utils/trpc'
+
+const DynamicSelect = dynamic(() => import('react-select'), { ssr: false })
 
 interface Input {
   name: string
@@ -41,8 +45,8 @@ const Menu: FC = () => {
   }
 
   // tRPC
-  const { mutateAsync: createPresignedUrl } = trpc.admin.createPresignedUrl.useMutation()
   const { mutateAsync: addItem } = trpc.admin.addMenuItem.useMutation()
+  const { mutateAsync: createPresignedUrl } = trpc.admin.createPresignedUrl.useMutation()
   const { data: menuItems, refetch } = trpc.menu.getMenuItems.useQuery()
   const { mutateAsync: deleteMenuItem } = trpc.admin.deleteMenuItem.useMutation()
 
@@ -51,7 +55,7 @@ const Menu: FC = () => {
     refetch()
   }
 
-  const handleImageUpload = async () => {
+  const handleImgUpload = async () => {
     const { file } = input
     if (!file) return
 
@@ -82,7 +86,7 @@ const Menu: FC = () => {
   }
 
   const addMenuItem = async () => {
-    const key = await handleImageUpload()
+    const key = await handleImgUpload()
     if (!key) throw new Error('No key')
 
     await addItem({
@@ -99,7 +103,7 @@ const Menu: FC = () => {
     setPreview('')
   }
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.[0]) return setError('No file selected')
     if (e.target.files[0].size > MAX_FILE_SIZE) return setError('File too big')
     setInput((prev) => ({ ...prev, file: e.target.files![0] }))
@@ -107,11 +111,11 @@ const Menu: FC = () => {
 
   return (
     <>
-      <div className='m-5 border-2 border-black rounded-3xl'>
-        <div className='mx-auto flex max-w-xl flex-col gap-2 m-2 text-white'>
+      <div className='m-10 border-2 flex flex-col justify-center  items-center border-gray-800 rounded-lg min-h-screen max-w-full font-medium bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400'>
+        <div className='mx-auto justify-center items-center gap-2 m-2 text-white border-black border-2 w-1/2 flex flex-col'>
           <input
             name='name'
-            className='h-12 rounded-lg border-2 border-cyan-800 bg-cyan-700 pl-2'
+            className='h-12 rounded-lg border-2 border-gray-800 bg-gray-700 pl-2 w-full'
             type='text'
             placeholder=' Name of Training Type'
             onChange={handleTextChange}
@@ -120,28 +124,28 @@ const Menu: FC = () => {
 
           <input
             name='price'
-            className='h-12 rounded-lg border-2 border-cyan-800 bg-cyan-700 pl-3'
+            className='h-12 rounded-lg border-2 border-gray-800 w-full bg-gray-700 pl-3'
             type='number'
             placeholder='price'
             onChange={(e) => setInput((prev) => ({ ...prev, price: Number(e.target.value) }))}
             value={input.price}
           />
 
-          {/* <DynamicSelect
+          <DynamicSelect
             value={input.categories}
             // @ts-ignore - when using dynamic import, typescript doesn't know about the onChange prop
             onChange={(e) => setInput((prev) => ({ ...prev, categories: e }))}
             isMulti
-            className='h-12 rounded-lg border-2 border-cyan-800 text-black'
+            className='h-12 rounded-lg border-gray-800 w-full bg-gray-700 text-black'
             options={selectOptions}
-          /> */}
+          />
 
           <label
             htmlFor='file'
             className='relative h-12 cursor-pointer rounded-sm bg-gray-200 font-medium text-indigo-600 focus-within:outline-none'
           >
             <span className='sr-only'>File input</span>
-            <div className='flex h-full items-center justify-center rounded-lg border-2 border-cyan-800 bg-cyan-700 text-white text-center'>
+            <div className='flex w-full h-full items-center justify-center rounded-lg border-gray-800 bg-gray-700 text-white text-center'>
               {preview ? (
                 <div className='relative h-3/4 w-full rounded-lg'>
                   <Image alt='preview' style={{ objectFit: 'contain' }} fill src={preview} />
@@ -156,12 +160,12 @@ const Menu: FC = () => {
               onChange={handleFileSelect}
               accept='image/jpeg image/png image/jpg'
               type='file'
-              className='sr-only  rounded-lg border-2 border-cyan-800 bg-cyan-700 pl-3'
+              className='sr-only w-full rounded-lg border-gray-800 bg-gray-700 pl-3'
             />
           </label>
 
           <button
-            className='h-12 disabled:cursor-not-allowed  rounded-lg border-2 border-cyan-800 bg-cyan-700 pl-3'
+            className='h-12 disabled:cursor-not-allowed  adminBtn rounded-lg border-2 border-cyan-800 bg-cyan-700 pl-3'
             disabled={!input.file || !input.name}
             onClick={addMenuItem}
           >

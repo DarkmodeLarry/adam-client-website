@@ -1,7 +1,6 @@
 import { SelectedPage } from '../../shared/types'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import Adam from '../../../public/Adam.png'
-import Dolphins from '../../../public/dolphins.png'
 import { motion } from 'framer-motion'
 import ActionButton from '../../shared/ActionButton'
 import Image from 'next/image'
@@ -14,18 +13,18 @@ const Home = ({ setSelectedPage }: Props) => {
   return (
     <section
       id='home'
-      className='flex flex-col justify-between items-center scrollbar-hide py-24 hero'
+      className='flex flex-col justify-between items-center scrollbar-hide pt-24 pb-16 hero max-w-full w-full '
     >
       {/* IMAGE AND MAIN HEADER */}
       <motion.div
-        className='flex items-center justify-center'
+        className='flex items-center justify-center py-4 px-4'
         onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
       >
         {/* MAIN HEADER */}
-        <div className='mt-16'>
+        <div className=''>
           {/* HEADINGS */}
           <motion.div
-            className='md:-mt-20'
+            className=''
             initial='hidden'
             whileInView='visible'
             viewport={{ once: true, amount: 0.5 }}
@@ -35,17 +34,16 @@ const Home = ({ setSelectedPage }: Props) => {
               visible: { opacity: 1, x: 0 }
             }}
           >
-            <div className='flex flex-col '>
-              <h1 className='headingText'>Keep Swimming</h1>
+            <div className='flex flex-col'>
+              <h1 className='text-center text-5xl font-bold tracking-wide'>Keep Swimming</h1>
               {/* IMAGES */}
-              <div className='flex mt-5'>
+              <div className='flex mt-8 '>
                 <Image alt='home-pageGraphic' src={Adam} className='' />
-                <p className='headingName text-center'>With Coach Adam</p>
-                <Image src={Dolphins} alt='dolphins' className='hidden md:block' />
+                <p className='headings mt-5 text-2xl text-center'>With Coach Adam</p>
               </div>
             </div>
-            <p className='mt-8 text-lg w-full text-white text-center '>
-              Skill. Fitness. Confidence. Leadership. Empowerment. Teamwork.{' '}
+            <p className='mt-8 text-lg w-full font-semibold tracking-widest text-white text-center headings'>
+              Fitness. Technique. Confidence. Leadership.
             </p>
           </motion.div>
 
@@ -63,7 +61,7 @@ const Home = ({ setSelectedPage }: Props) => {
           >
             <ActionButton setSelectedPage={setSelectedPage}>Join Now</ActionButton>
             <AnchorLink
-              className='text-sm font-bold text-gray-200 underline hover:text-secondary-500 hover:rounded-xl hover:border-2 hover:px-4 hover:py-2 transition-all duration-300 '
+              className='text-sm font-bold text-gray-200 underline hover:text-secondary-500 hover:rounded-xl hover:border-2 hover:px-4 hover:py-2 px-4 py-2 transition-all duration-300 '
               onClick={() => setSelectedPage(SelectedPage.ContactUs)}
               href={`#${SelectedPage.ContactUs}`}
             >

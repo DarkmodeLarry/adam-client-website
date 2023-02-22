@@ -57,15 +57,16 @@ const MenuPage: FC = () => {
         products={productsInCart}
       />
       {isFetchedAfterMount && selectedTime ? (
-        <div className='mx-auto mt-12 max-w-7xl sm:px-6 lg:px-8'>
+        <div className='flex min-h-screen max-h-screen max-w-full font-medium bg-gradient-to-t from-gray-200 via-gray-300 to-gray-500 flex-col-reverse w-full '>
           {/* Cart Icon */}
-          <div className='flex w-full justify-end'>
+          <div className='flex w-full mb-10 justify-center items-center'>
             <button
               type='button'
               onClick={() => setShowCart((prev) => !prev)}
-              className='flex items-center justify-center rounded-lg bg-gray-200 p-3 text-2xl font-medium text-indigo-600'
+              className='flex items-center justify-center rounded-lg bg-green-200 px-10 py-4 text-2xl font-medium text-gray-900'
             >
-              <BsCart className='mr-2 text-2xl' />
+              <BsCart className='mr-2 text-5xl' />
+
               {productsInCart.reduce((acc, item) => acc + item.quantity, 0)}
             </button>
           </div>

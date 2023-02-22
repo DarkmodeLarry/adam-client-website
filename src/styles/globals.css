@@ -1,24 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
   .button {
-    @apply px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg 
+    @apply bg-gray-900 px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg 
         active:scale-95 active:bg-gray-100 transition transform duration-100 ease-out;
   }
 }
 
+@layer components {
+  .adminBtn {
+    @apply font-montserrat border-2  border-gray-400 text-gray-100 flex flex-col justify-center items-center font-semibold text-xl rounded-lg w-96 h-20 bg-gray-600 shadow-xl hover:shadow-lg shadow-white whitespace-nowrap hover:shadow-black hover:bg-gray-200 hover:text-gray-900 hover:border-2 hover:border-gray-900 hover:scale-95 active:scale-90 hover:translate-y-2 duration-200 transition-all hover:outline-double hover:ring-2 hover:ring-white hover:ring-offset-4;
+  }
+}
+
+:root {
+  --irish: 'Irish Grover';
+}
 .app {
   height: 100%;
   width: 100%;
-  font-family: 'DM Sans', sans-serif;
 }
 
 body {
   font-family: 'DM Sans', sans-serif;
+}
+
+h1,
+.headings {
+  font-family: 'Irish Grover', cursive;
 }
 
 input,
@@ -31,27 +45,21 @@ button {
 
 .btn {
   color: #f2f2f2;
-  background-color: #444444;
+  background-color: #78716c;
   display: inline-block;
   white-space: nowrap;
   padding: 0.75rem 1.5rem;
   font-size: 1.15rem;
+  border: 2px solid white;
   font-weight: 600;
-  background: var(--bgcolor);
   border-radius: 0.66rem;
-  transition: all 0.2s;
+  transition: all 0.3s;
   box-shadow: 0 0.5rem 1.5rem -0.5rem currentColor;
-}
-
-.btn.btn-dark {
-  color: #444444;
-  background-color: #f2f2f2;
 }
 
 .btn:hover,
 .btn:focus {
-  box-shadow: 0 0 0 2px #444444, 0 0 0 4px #444444;
-  color: #f2f2f2;
+  box-shadow: 0 0 0 2px var(--color), 0 0 0 4px var(--bgcolor);
 }
 .btn:active {
   transform: scale(0.95);
@@ -60,18 +68,6 @@ button {
 ::selection {
   color: var(--light);
   background: var(--red);
-}
-
-.headingText {
-  font-family: 'Irish Grover', cursive;
-  font-size: 5rem;
-  text-align: center;
-}
-
-.headingName {
-  font-family: 'Irish Grover', cursive;
-  font-size: 3rem;
-  text-align: center;
 }
 
 .closed-day {
@@ -94,12 +90,6 @@ button {
   max-height: 100vh;
   background-color: hsla(199, 97%, 45%, 1);
   background-image: radial-gradient(at 20% 0%, rgb(228, 247, 242) 5px, transparent 50%);
-}
-.adminPage {
-  min-height: 100vh;
-  max-height: 100vh;
-  background-color: rgb(2, 48, 70);
-  background-image: radial-gradient(at 80% 0%, rgb(224, 247, 242) 5px, transparent 50%);
 }
 
 .hero {

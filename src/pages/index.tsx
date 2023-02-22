@@ -40,7 +40,7 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
         setSelectedPage={setSelectedPage}
       />
 
-      <main>
+      <main className='min-h-screen max-w-full flex flex-col justify-center items-center '>
         <Hero setSelectedPage={setSelectedPage} />
         <Benefits setSelectedPage={setSelectedPage} />
         <Calendar days={days} closedDays={closedDays} />

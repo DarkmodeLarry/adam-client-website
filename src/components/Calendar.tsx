@@ -63,7 +63,7 @@ const CalendarComponent: FC<CalendarProps> = ({ days, closedDays }) => {
                     className='hover:bg-gray-200 w-16 h-8 flex flex-col justify-center items-center bg-gray-200 rounded-full border-2 hover:border-2 hover:border-gray-100 transition-all duration-300 ease-out '
                     onClick={() => setDate((prev) => ({ ...prev, dateTime: time }))}
                   >
-                    {format(time, 'hh:mm')}
+                    {format(time, 'hh:mm aa')}
                   </button>
                 </div>
               ))}
