@@ -8,8 +8,14 @@ import toast, { Toaster } from 'react-hot-toast'
 import { now } from 'src/constants/config'
 import { capitalize, classNames, weekdayIndexToName } from '../../utils/helpers'
 import { trpc } from 'src/utils/trpc'
+
 import { prisma } from '../../server/db/client'
 
+const spring = {
+  type: 'spring',
+  stiffness: 500,
+  damping: 30
+}
 interface OpeningProps {
   days: Day[]
 }
@@ -50,24 +56,24 @@ const Opening: FC<OpeningProps> = ({ days }) => {
   }
 
   return (
-    <div className='bg-gradient-to-t from-gray-200 via-gray-300 to-gray-500 flex min-h-screen max-h-screen max-w-full font-medium'>
+    <div className='bg-gradient-to-t from-gray-200 via-gray-300 to-gray-200 flex min-h-screen max-h-screen max-w-full font-medium flex-col border-2 rounded-md border-black'>
       <Toaster />
-      <div className='border-2 flex justify-center gap-6 bg-gradient-to-br from-gray-100 to-gray-400 py-10'>
+      <div className='flex justify-center gap-6 bg-gray-900 py-10 text-white font-bold tracking-widest'>
         <p className={`${!enabled ? 'font-medium' : ''}`}>Opening Times</p>
         <Switch
           checked={enabled}
           onChange={setEnabled}
           className={classNames(
-            enabled ? 'bg-indigo-600' : 'bg-gray-200',
-            'relative inline-flex h-14 w-28 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+            enabled ? 'bg-gray-600' : 'bg-gray-300',
+            'relative inline-flex h-14 items-center w-[110px] flex-shrink-0 cursor-pointer rounded-full border-8 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
           )}
         >
           <span className='sr-only'>Use setting</span>
           <span
             aria-hidden='true'
             className={classNames(
-              enabled ? 'translate-x-11' : 'translate-x-0',
-              'pointer-events-none inline-block h-11 w-11 bg-cyan-500 border-2 border-white transform rounded-full  shadow ring-0 transition duration-200 ease-in-out'
+              enabled ? 'translate-x-12' : 'translate-x-0',
+              'pointer-events-none inline-block h-14 w-14 bg-green-500 border-4 border-white transform rounded-full  shadow ring-0 transition duration-200 ease-in-out'
             )}
           />
         </Switch>

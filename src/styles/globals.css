@@ -7,54 +7,39 @@
 
 @layer components {
   .button {
-    @apply bg-gray-900 px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg 
-        active:scale-95 active:bg-gray-100 transition transform duration-100 ease-out;
+    @apply px-8 py-4 border-2 text-white bg-gray-800 rounded-lg cursor-pointer shadow-lg shadow-gray-100 hover:shadow-md font-montserrat tracking-wider hover:scale-90 hover:shadow-gray-900 hover:text-gray-900 hover:bg-gray-100 hover:border-2 hover:border-gray-900
+        active:scale-75 active:bg-gray-100 transition duration-300 ease-out hover:translate-y-1 hover:text-lg hover:ring-2 hover:ring-gray-100 whitespace-nowrap;
   }
 }
 
 @layer components {
   .adminBtn {
-    @apply font-montserrat border-2  border-gray-400 text-gray-100 flex flex-col justify-center items-center font-semibold text-xl rounded-lg w-96 h-20 bg-gray-600 shadow-xl hover:shadow-lg shadow-white whitespace-nowrap hover:shadow-black hover:bg-gray-200 hover:text-gray-900 hover:border-2 hover:border-gray-900 hover:scale-95 active:scale-90 hover:translate-y-2 duration-200 transition-all hover:outline-double hover:ring-2 hover:ring-white hover:ring-offset-4;
+    @apply font-montserrat border-2  border-gray-400 text-gray-100 flex flex-col justify-center items-center font-semibold text-xl  w-96 h-20 bg-gray-600 shadow-xl hover:shadow-lg  whitespace-nowrap hover:shadow-black hover:bg-gray-200 hover:text-gray-900 hover:border-2 hover:border-gray-900 hover:scale-95 active:scale-90 hover:translate-y-2 duration-200 transition-all hover:outline-double hover:ring-2 hover:ring-white hover:ring-offset-4 rounded-md  shadow-gray-800 hover:bg-gradient-to-r from-cyan-400 via-gray-400 to-yellow-500;
   }
 }
 
-:root {
-  --irish: 'Irish Grover';
-}
 .app {
   height: 100%;
   width: 100%;
 }
+/* join the family
+get fit
+get healthy
+dont sweat it
+get in the pool
+make some memories */
 
 body {
   font-family: 'DM Sans', sans-serif;
 }
 
+.raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
 h1,
 .headings {
   font-family: 'Irish Grover', cursive;
-}
-
-input,
-Link,
-button {
-  font-family: inherit;
-  color: var(--radial);
-  text-decoration: none;
-}
-
-.btn {
-  color: #f2f2f2;
-  background-color: #78716c;
-  display: inline-block;
-  white-space: nowrap;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.15rem;
-  border: 2px solid white;
-  font-weight: 600;
-  border-radius: 0.66rem;
-  transition: all 0.3s;
-  box-shadow: 0 0.5rem 1.5rem -0.5rem currentColor;
 }
 
 .btn:hover,
@@ -92,11 +77,20 @@ button {
   background-image: radial-gradient(at 20% 0%, rgb(228, 247, 242) 5px, transparent 50%);
 }
 
-.hero {
-  background-color: rgb(48, 112, 142);
-  background-image: radial-gradient(at 10% 0%, rgb(228, 247, 242) 5px, transparent 40%);
+.hers {
+  background: conic-gradient(
+    at center top,
+    rgb(34, 211, 238),
+    rgb(14, 165, 233),
+    rgb(255, 255, 255)
+  );
 }
+
 /* 
 Adam Gonzales
 Head Coach
 Adam was born in Anaheim, and raised in Fountain Valley, California. He began swimming at Green Valley at the age of 7 in 1996. He competed at Green Valley every summer from then until he turned 18. During his time at Green Valley he set numerous team records, and began to coach from ages 15-18. Upon graduating from Fountain Valley High School, Adam went on to swim under an athletic scholarship at UC Santa Barbara, where he got a Bachelors in Philosophy and a minor in Athletic Coaching. He continued to work for Green Valley during summer breaks from college. Once finished with school, he moved back to Orange County and began working as a full-time swimming coach, both for Green Valley and for Orange County Riptide Aquatics. He also ran the swim team at Ocean View High School. He then left Green Valley and spent a couple years working in the Monterey Bay area, as Head Coach for the Gilroy Gators Swim Team, before moving back to Southern California. Now that he is back in the Orange County area, he is excited to be back where it all began for him. */
+
+.dashMenu {
+  background-image: url('/public/boySwim.webp') no-repeat center center fixed;
+}

@@ -49,7 +49,7 @@ const MenuPage: FC = () => {
   }, [router])
 
   return (
-    <>
+    <div className='bg-gray-200'>
       <Cart
         removeFromCart={removeFromCart}
         open={showCart}
@@ -57,19 +57,14 @@ const MenuPage: FC = () => {
         products={productsInCart}
       />
       {isFetchedAfterMount && selectedTime ? (
-        <div className='flex min-h-screen max-h-screen max-w-full font-medium bg-gradient-to-t from-gray-200 via-gray-300 to-gray-500 flex-col-reverse w-full '>
+        <div className='bg-gray-100 '>
           {/* Cart Icon */}
-          <div className='flex w-full mb-10 justify-center items-center'>
-            <button
-              type='button'
-              onClick={() => setShowCart((prev) => !prev)}
-              className='flex items-center justify-center rounded-lg bg-green-200 px-10 py-4 text-2xl font-medium text-gray-900'
-            >
-              <BsCart className='mr-2 text-5xl' />
 
-              {productsInCart.reduce((acc, item) => acc + item.quantity, 0)}
-            </button>
-          </div>
+          <button type='button' onClick={() => setShowCart((prev) => !prev)} className='px-10 '>
+            <BsCart className='m-2 text-5xl' />
+
+            {productsInCart.reduce((acc, item) => acc + item.quantity, 0)}
+          </button>
 
           <Menu addToCart={addToCart} selectedTime={selectedTime} />
         </div>
@@ -78,7 +73,7 @@ const MenuPage: FC = () => {
           <Spinner />
         </div>
       )}
-    </>
+    </div>
   )
 }
 

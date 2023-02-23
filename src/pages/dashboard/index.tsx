@@ -3,16 +3,16 @@ import type { FC } from 'react'
 
 const dashboard: FC = () => {
   return (
-    <div className='flex min-h-screen max-h-screen max-w-full font-medium bg-gradient-to-t from-gray-200 via-gray-300 to-gray-500'>
-      <div className='border-2 relative w-full m-6 rounded-md shadow-2xl shadow-gray-800'>
-        <h1 className='text-6xl text-white text-center tracking-wider pt-10'>
+    <div className='flex flex-col items-center min-h-screen max-w-full bg-gray-100 p-10'>
+      <div className='w-full flex flex-col justify-center items-center shadow-2xl bg-gray-200 '>
+        <h1 className='text-6xl text-gray-600 font-dmsans font-semibold text-center tracking-wide mt-10'>
           ADAM&apos;S DASHBOARD
         </h1>
-        <div className='flex flex-col mt-24 items-center gap-16 w-full h-full'>
+        <div className='flex flex-col mt-24 justify-center items-center gap-16 w-full h-full my-44'>
           <Link className='adminBtn' href='/dashboard/opening'>
             Opening Hours
           </Link>
-          <Link className='adminBtn' href='/dashboard/menu'>
+          <Link className='adminBtn adminBtnText' href='/dashboard/menu'>
             Menu
           </Link>
         </div>

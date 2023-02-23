@@ -77,7 +77,7 @@ const TimeSelector: FC<TimeSelectorProps> = ({ selected, changeTime, type }) => 
                       key={time}
                       className={({ active }) =>
                         classNames(
-                          active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                          active ? 'bg-green-600 text-white' : 'text-gray-900',
                           'relative cursor-default select-none py-2 pl-3 pr-9'
                         )
                       }
@@ -88,7 +88,7 @@ const TimeSelector: FC<TimeSelectorProps> = ({ selected, changeTime, type }) => 
                           <div className='flex items-center'>
                             <span
                               className={classNames(
-                                time === selected ? 'bg-green-400' : 'bg-gray-200',
+                                time === selected ? 'bg-green-500' : 'bg-blue-800',
                                 'inline-block h-2 w-2 flex-shrink-0 rounded-full'
                               )}
                               aria-hidden='true'

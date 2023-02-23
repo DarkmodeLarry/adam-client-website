@@ -111,82 +111,79 @@ const Menu: FC = () => {
 
   return (
     <>
-      <div className='m-10 border-2 flex flex-col justify-center  items-center border-gray-800 rounded-lg min-h-screen max-w-full font-medium bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400'>
-        <div className='mx-auto justify-center items-center gap-2 m-2 text-white border-black border-2 w-1/2 flex flex-col'>
+      <div className='mx-auto flex flex-col max-w-xl gap-2  '>
+        <input
+          name='name'
+          className='h-12 rounded-lg bg-gray-600 pl-2'
+          type='text'
+          placeholder=' Name of Training Type'
+          onChange={handleTextChange}
+          value={input.name}
+        />
+
+        <input
+          name='price'
+          className='h-12 rounded-lg w-full bg-gray-600 pl-3'
+          type='number'
+          placeholder='price'
+          onChange={(e) => setInput((prev) => ({ ...prev, price: Number(e.target.value) }))}
+          value={input.price}
+        />
+
+        <DynamicSelect
+          value={input.categories}
+          // @ts-ignore - when using dynamic import, typescript doesn't know about the onChange prop
+          onChange={(e) => setInput((prev) => ({ ...prev, categories: e }))}
+          isMulti
+          className='rounded-lg w-full'
+          options={selectOptions}
+        />
+
+        <label htmlFor='file' className='h-12 cursor-pointer rounded-sm font-medium'>
+          <span className='sr-only'>File input</span>
+          <div className='flex w-full p-2 h-full items-center justify-center rounded-lg border-gray-800 bg-gray-700 text-white text-center'>
+            {preview ? (
+              <div className='relative w-full rounded-lg'>
+                <Image alt='preview' style={{ objectFit: 'contain' }} fill src={preview} />
+              </div>
+            ) : (
+              <span>Select image</span>
+            )}
+          </div>
           <input
-            name='name'
-            className='h-12 rounded-lg border-2 border-gray-800 bg-gray-700 pl-2 w-full'
-            type='text'
-            placeholder=' Name of Training Type'
-            onChange={handleTextChange}
-            value={input.name}
+            name='file'
+            id='file'
+            onChange={handleFileSelect}
+            accept='image/jpeg image/png image/jpg'
+            type='file'
+            className='mx-auto  flex w-full border-2 border-gray-800 justify-center items-center rounded-lg'
           />
+        </label>
 
-          <input
-            name='price'
-            className='h-12 rounded-lg border-2 border-gray-800 w-full bg-gray-700 pl-3'
-            type='number'
-            placeholder='price'
-            onChange={(e) => setInput((prev) => ({ ...prev, price: Number(e.target.value) }))}
-            value={input.price}
-          />
+        <button
+          className='h-12 disabled:cursor-not-allowed  adminBtn rounded-lg pl-3'
+          disabled={!input.file || !input.name}
+          onClick={addMenuItem}
+        >
+          Add menu item
+        </button>
 
-          <DynamicSelect
-            value={input.categories}
-            // @ts-ignore - when using dynamic import, typescript doesn't know about the onChange prop
-            onChange={(e) => setInput((prev) => ({ ...prev, categories: e }))}
-            isMulti
-            className='h-12 rounded-lg border-gray-800 w-full bg-gray-700 text-black'
-            options={selectOptions}
-          />
+        {error && <p className='text-xs font-bold font-montserrat text-red-600'>{error}</p>}
 
-          <label
-            htmlFor='file'
-            className='relative h-12 cursor-pointer rounded-sm bg-gray-200 font-medium text-indigo-600 focus-within:outline-none'
-          >
-            <span className='sr-only'>File input</span>
-            <div className='flex w-full h-full items-center justify-center rounded-lg border-gray-800 bg-gray-700 text-white text-center'>
-              {preview ? (
-                <div className='relative h-3/4 w-full rounded-lg'>
-                  <Image alt='preview' style={{ objectFit: 'contain' }} fill src={preview} />
-                </div>
-              ) : (
-                <span>Select image</span>
-              )}
-            </div>
-            <input
-              name='file'
-              id='file'
-              onChange={handleFileSelect}
-              accept='image/jpeg image/png image/jpg'
-              type='file'
-              className='sr-only w-full rounded-lg border-gray-800 bg-gray-700 pl-3'
-            />
-          </label>
-
-          <button
-            className='h-12 disabled:cursor-not-allowed  adminBtn rounded-lg border-2 border-cyan-800 bg-cyan-700 pl-3'
-            disabled={!input.file || !input.name}
-            onClick={addMenuItem}
-          >
-            Add menu item
-          </button>
-        </div>
-        {error && <p className='text-xs text-red-600'>{error}</p>}
-
-        <div className='mx-auto mt-12 max-w-7xl'>
-          <p className='text-lg font-semibold text-center'>Your Menu Items:</p>
-          <div className='mt-6 mb-12 flex justify-center text-left'>
+        <div className='mx-auto max-w-7xl mt-16'>
+          <p className='text-semibold text-center text-lg'>Your Current Menu Items:</p>
+          <div className='flex'>
             {menuItems?.map((menuItem) => (
-              <div key={menuItem.id} className='p-10'>
-                <p className='font-semibold p-2'>{menuItem.name}</p>
-                <div className='relative h-40 w-40  border-2 border-cyan-900 rounded-xl bg-cyan-700'>
+              <div key={menuItem.id} className='m-5'>
+                <p className='font-semibold '>{menuItem.name}</p>
+                <div className='border-2 border-cyan-900 rounded-xl bg-gray-200'>
                   <Image
                     priority
-                    fill
+                    height={200}
+                    width={200}
                     alt=''
                     src={menuItem.url}
-                    className='rounded-xl object-fit p-2'
+                    className='rounded-xl object-fit'
                   />
                 </div>
                 <button

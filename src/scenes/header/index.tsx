@@ -17,7 +17,7 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)')
   const navbarBackground = isTopOfPage
     ? ''
-    : 'bg-gray-900 rounded-full w-full flex justify-center items-center mt-4 drop-shadow bg-opacity-90 transition-all duration-300 h-20 text-gray-100'
+    : 'bg-gray-900 rounded-full w-full flex justify-center items-center mt-4 transition-all duration-300 h-20 text-gray-100'
   return (
     <nav>
       <div
@@ -27,7 +27,7 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
           <div className={`${flexBetween} w-[97%] mx-auto gap-16`}>
             {/* LEFT SIDE */}
             <div className='flex items-center gap-4 font-montserrat'>
-              <GiDolphin className='text-5xl text-gray-600' />
+              <GiDolphin className='text-5xl text-gray-400' />
               <p className=' font-bold tracking-widest font-montserrat'>Coach Adam</p>
             </div>
 
@@ -91,7 +91,7 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
       </div>
       {/* MOBILE MENU MODAL */}
       {!isAboveMediumScreens && isMenuToggled && (
-        <div className='fixed right-0 bottom-0 z-40 h-full w-[300px] bg-gray-900 text-white  drop-shadow-xl'>
+        <div className='fixed right-0 bottom-0 z-40 h-full w-[300px] bg-gray-900 backdrop-blur-lg text-white  drop-shadow-xl'>
           {/* CLOSE ICON */}
           <div className='flex justify-end p-12'>
             <div className='border-2 px-2 pt-1 border-transparent text-white hover:border-yellow-400 hover:drop-shadow-lg hover:shadow-gray-900 transition-all duration-300 ease-out rounded-full'>
@@ -102,7 +102,7 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
           </div>
 
           {/* MENU ITEMS */}
-          <div className='ml-[33%] flex flex-col gap-10 text-2xl'>
+          <div className='ml-[33%] flex flex-col gap-10 text-2xl '>
             <NavLink page='Home' selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
             <NavLink
               page='Benefits'

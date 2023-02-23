@@ -18,10 +18,10 @@ const Benefit = ({ icon, title, description, setSelectedPage }: Props) => {
   return (
     <motion.div
       variants={childVariant}
-      className='mt-5 rounded-md border-2 border-gray-200 px-5 py-5 text-center max-w-sm bg--200'
+      className='mt-5 rounded-md border-2 border-gray-400 px-5 py-5 text-center max-w-sm bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-gray-800 via-cyan-400 to-gray-800'
     >
       <div className='flex justify-center'>
-        <div className='rounded-full border-2 border-gray-600 bg-gray-200 p-4'>{icon}</div>
+        <div className='rounded-full border-2 border-white bg-gray-300 p-4'>{icon}</div>
       </div>
 
       <h4 className='font-bold'>{title}</h4>
