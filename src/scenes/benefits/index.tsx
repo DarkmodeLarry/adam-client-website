@@ -61,7 +61,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
               <p className='font-montserrat leading-8 text-left p-5'>
                 Adam brings a wealth of experience both as a coach and as an accomplished
                 competitive swimmer to his program. With over 20 years of experience, He&apos;s
-                enjoyed many achievements during his time as a competitive athlete has also set
+                enjoyed many achievements during his time as a competitive athlete and has also set
                 numerous team records. This led to an athletic scholarship to UC Santa Barbara where
                 he earned a Bachelors Degree in Philosophy with a minor in Athletic Coaching. He now
                 resides back in Fountain Valley to give back to the community that has given so much

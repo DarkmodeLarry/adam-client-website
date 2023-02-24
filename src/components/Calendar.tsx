@@ -42,35 +42,32 @@ const CalendarComponent: FC<CalendarProps> = ({ days, closedDays }) => {
   return (
     <section
       id='calendar'
-      className='calendar max-w-full min-h-screen bg-gray-900 flex justify-center items-center flex-col'
+      className='calendar h-screen justify-center w-full bg-gray-900 flex flex-col items-center '
     >
-      <div className='max-w-full flex flex-col gap-10 justify-center items-center'>
-        <h1 className='text-4xl font-montserrat py-10 text-white'>Select an Appointment</h1>
-      </div>
-      <div className='flex flex-col md:flex-row w-full h-full items-center justify-center'>
+      <h1 className='text-4xl font-montserrat mb-10 text-white'>Select an Appointment</h1>
+      <div className='flex flex-col md:flex-row w-full items-center'>
         <div className='w-1/2 flex flex-col gap-10 justify-center items-center '>
           <p className='text-2xl text-gray-200 w-full text-center font-montserrat'>Pick a Date</p>
           <DynamicCalendar
             minDate={now}
-            className='REACT-CALENDAR p-2'
+            className='REACT-CALENDAR p-2 md:mb-10'
             view='month'
             tileDisabled={({ date }) => closedDays.includes(formatISO(date))}
             onClickDay={(date) => setDate((prev) => ({ ...prev, justDate: date }))}
           />
         </div>
 
-        <div className='w-1/2 flex flex-col items-center mt-10'>
+        <div className='md:w-1/2 w-full mt-10 md:mt-0 px-1'>
           <h3 className='text-white text-center font-montserrat tracking-wider w-full text-2xl'>
             Pick a Time
           </h3>
-
-          <div className='gap-2 flex flex-wrap p-2 items-center mt-5 mb-10 border-none md:border-l-2'>
+          <div className='gap-2 flex flex-wrap items-center p-2 mt-5 mb-10'>
             {date.justDate &&
               times?.map((time, i) => (
                 <div key={`time-${i}`} className=''>
                   <button
                     type='button'
-                    className='flex font-semibold text-md text-black w-28 h-10 justify-center items-center bg-gray-100 shadow-md shadow-gray-500 rounded-lg border-2  transition-all duration-300 ease-out hover:scale-95 hover:bg-gray-700 hover:border-white hover:text-gray-100'
+                    className='flex font-semibold text-md text-black w-28 h-10 justify-center items-center bg-gray-100 shadow-md shadow-gray-500 rounded-lg border-2  transition-all duration-300 ease-in-out hover:scale-95 hover:bg-gray-700 hover:border-white hover:text-gray-100'
                     onClick={() => setDate((prev) => ({ ...prev, dateTime: time }))}
                   >
                     {format(time, 'hh:mm aa')}

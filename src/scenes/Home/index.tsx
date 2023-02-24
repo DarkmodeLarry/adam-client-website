@@ -59,7 +59,7 @@ const Home = ({ setSelectedPage }: Props) => {
             }}
           >
             <button className='button'>Join Now</button>
-            <AnchorLink className='text-md font-bold text-gray-800 underline hover:text-secondary-500 hover:rounded-xl hover:border-2 hover:px-4 hover:py-2 px-4 py-2 transition-all duration-300'>
+            <AnchorLink className='text-md font-bold text-gray-800 underline hover:text-secondary-500 hover:rounded-xl hover:border-2 hover:px-4 hover:py-2 px-4 py-2 transition-all duration-300 cursor-pointer'>
               <p>Learn More</p>
             </AnchorLink>
           </motion.div>

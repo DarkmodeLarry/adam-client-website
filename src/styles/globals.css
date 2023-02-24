@@ -7,8 +7,8 @@
 
 @layer components {
   .button {
-    @apply px-8 py-4 border-2 text-white bg-gray-800 rounded-lg cursor-pointer shadow-lg shadow-gray-100 hover:shadow-md font-montserrat tracking-wider hover:scale-90 hover:shadow-gray-900 hover:text-gray-900 hover:bg-gray-100 hover:border-2 hover:border-gray-900
-        active:scale-75 active:bg-gray-100 transition duration-300 ease-out hover:translate-y-1 hover:text-lg hover:ring-2 hover:ring-gray-100 whitespace-nowrap;
+    @apply px-8 py-4 border-2 text-white bg-gray-800 rounded-lg shadow-lg shadow-gray-200 hover:shadow-md font-montserrat tracking-wider hover:scale-90 hover:shadow-gray-900 hover:text-gray-900 hover:bg-gray-100 hover:border-2 hover:border-gray-900
+        active:scale-75 transition-all duration-300 ease-out hover:translate-y-[2px] hover:ring-2 hover:ring-gray-100 whitespace-nowrap;
   }
 }
 

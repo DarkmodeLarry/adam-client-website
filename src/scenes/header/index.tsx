@@ -70,18 +70,18 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                     </div>
                   </div>
                 </div>
-                <div className='flex justify-center items-center gap-4 bg-gray-200 rounded-full p-1'>
-                  <User className='h-12 w-12 text-gray-400 bg-gray-500 rounded-full ' />
+                <div className='flex justify-center items-center gap-4 bg-gray-200 rounded-full p-2'>
+                  <User className='h-12 w-12 text-gray-400 bg-gray-500 rounded-full' />
                   <p className='text-gray-900 font-montserrat bg-gray-00'>Welcome Back Swimmer!</p>
                 </div>
               </div>
             ) : (
               <div className='flex justify-center items-center gap-4 bg-gray-200 rounded-full px-2 py-1'>
                 <button
-                  className='rounded-full  p-2'
+                  className='rounded-full p-2 hover:border-gray-400 border-2 drop-shadow-md hover:shadow-xl transition-all duration-200'
                   onClick={() => setIsMenuToggled(!isMenuToggled)}
                 >
-                  <Menu className='h-8 w-8 text-gray-500 ' />
+                  <Menu className='h-8 w-8 text-gray-500 rounded-full  ' />
                 </button>
                 <User className='h-9 w-9 text-gray-400 bg-gray-500 rounded-full ' />
               </div>

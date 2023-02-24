@@ -11,11 +11,6 @@ import { trpc } from 'src/utils/trpc'
 
 import { prisma } from '../../server/db/client'
 
-const spring = {
-  type: 'spring',
-  stiffness: 500,
-  damping: 30
-}
 interface OpeningProps {
   days: Day[]
 }
@@ -45,7 +40,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
 
   const dayIsClosed = selectedDate && closedDays?.includes(formatISO(selectedDate))
 
-  // Curried function
+  // Curried function for easier usage
   function _changeTime(day: Day) {
     return function (time: string, type: 'openTime' | 'closeTime') {
       const index = openingHrs.findIndex((x) => x.name === weekdayIndexToName(day.dayOfWeek))
@@ -56,9 +51,9 @@ const Opening: FC<OpeningProps> = ({ days }) => {
   }
 
   return (
-    <div className='bg-gradient-to-t from-gray-200 via-gray-300 to-gray-200 flex min-h-screen max-h-screen max-w-full font-medium flex-col border-2 rounded-md border-black'>
+    <div className='bg-gradient-to-t from-gray-200 via-gray-300 to-gray-200 font-medium mx-auto border-black'>
       <Toaster />
-      <div className='flex justify-center gap-6 bg-gray-900 py-10 text-white font-bold tracking-widest'>
+      <div className='flex items-center justify-center gap-6 bg-gray-900 py-10 text-white font-bold tracking-widest '>
         <p className={`${!enabled ? 'font-medium' : ''}`}>Opening Times</p>
         <Switch
           checked={enabled}
@@ -72,8 +67,8 @@ const Opening: FC<OpeningProps> = ({ days }) => {
           <span
             aria-hidden='true'
             className={classNames(
-              enabled ? 'translate-x-12' : 'translate-x-0',
-              'pointer-events-none inline-block h-14 w-14 bg-green-500 border-4 border-white transform rounded-full  shadow ring-0 transition duration-200 ease-in-out'
+              enabled ? 'translate-x-12' : '-translate-x-1',
+              'pointer-events-none inline-block h-14 w-14 bg-green-500 border-4 border-white transform rounded-full shadow ring-0 transition duration-200 ease-in-out'
             )}
           />
         </Switch>
@@ -82,7 +77,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
 
       {!enabled ? (
         // Opening times options
-        <div className='my-12 flex flex-col gap-8'>
+        <div className='my-12 flex flex-col gap-8 max-w-xl mx-auto h-screen'>
           {days.map((day) => {
             const changeTime = _changeTime(day)
             return (
@@ -115,6 +110,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
             )
           })}
           <button
+            className='text-gray-900 text-2xl  '
             onClick={() => {
               const withId = openingHrs.map((day) => ({
                 ...day,
@@ -141,6 +137,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
           />
 
           <button
+            className='text-2xl'
             onClick={() => {
               if (dayIsClosed) openDay({ date: selectedDate })
               else if (selectedDate) closeDay({ date: selectedDate })
