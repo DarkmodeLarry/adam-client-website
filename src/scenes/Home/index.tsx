@@ -34,11 +34,15 @@ const Home = ({ setSelectedPage }: Props) => {
             }}
           >
             <div className='flex flex-col'>
-              <h1 className='text-center text-5xl font-bold tracking-wide'>Keep Swimming</h1>
+              <h1 className='text-center text-5xl font-bold tracking-wide'>
+                Keep Swimming
+              </h1>
               {/* IMAGES */}
               <div className='flex mt-8 '>
                 <Image alt='home-pageGraphic' src={Adam} className='w-[75%]' />
-                <p className='headings mt-5 text-2xl text-center'>With Coach Adam</p>
+                <p className='headings mt-5 text-2xl text-center'>
+                  With Coach Adam
+                </p>
               </div>
             </div>
             <p className='mt-8 text-lg w-full font-montserrat tracking-widest text-gray-900  text-center '>

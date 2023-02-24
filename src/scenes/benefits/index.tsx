@@ -15,13 +15,13 @@ const benefits: Array<BenefitType> = [
       'Neque adipiscing amet amet enim. Feugiat dolor enim fermentum in a in lectus pellentesque. Ullamcorper et.'
   },
   {
-    icon: <FaSwimmer className='h-8 w-8' />,
+    icon: <FaSwimmer className='h-8 w-8 text-indigo-600' />,
     title: 'Skills for Life',
     description:
       'Eu ipsum id egestas risus tempus enim semper felis quis. Nec consectetur ac venenatis facilisi est. Eget ac turpis id.'
   },
   {
-    icon: <GiStrong className='h-8 w-8' />,
+    icon: <GiStrong className='h-8 w-8 text-orange-500' />,
     title: 'Confidence',
     description:
       'Fusce vestibulum aliquam ut cras. Nisl lectus egestas sapien nisl. Lacus at mi sit pellentesque. Congue parturient.'
@@ -41,8 +41,13 @@ type Props = {
 
 const Benefits = ({ setSelectedPage }: Props) => {
   return (
-    <section id='benefits' className='flex flex-col justify-center  md:text-center w-full py-10'>
-      <motion.div onViewportEnter={() => setSelectedPage(SelectedPage.Benefits)}>
+    <section
+      id='benefits'
+      className='flex flex-col justify-center  md:text-center w-full py-10'
+    >
+      <motion.div
+        onViewportEnter={() => setSelectedPage(SelectedPage.Benefits)}
+      >
         {/* HEADER */}
         <motion.div
           className='md:my-5 bg-transparent text-center'
@@ -59,17 +64,20 @@ const Benefits = ({ setSelectedPage }: Props) => {
             <div className='text-sm md:w-4/12 mt-5 mb-16 '>
               <HText>COACH ADAM</HText>
               <p className='font-montserrat leading-8 text-left p-5'>
-                Adam brings a wealth of experience both as a coach and as an accomplished
-                competitive swimmer to his program. With over 20 years of experience, He&apos;s
-                enjoyed many achievements during his time as a competitive athlete and has also set
-                numerous team records. This led to an athletic scholarship to UC Santa Barbara where
-                he earned a Bachelors Degree in Philosophy with a minor in Athletic Coaching. He now
-                resides back in Fountain Valley to give back to the community that has given so much
-                to him.
+                Adam brings a wealth of experience both as a coach and as an
+                accomplished competitive swimmer to his program. With over 20
+                years of experience, He&apos;s enjoyed many achievements during
+                his time as a competitive athlete and has also set numerous team
+                records. This led to an athletic scholarship to UC Santa Barbara
+                where he earned a Bachelors Degree in Philosophy with a minor in
+                Athletic Coaching. He now resides back in Fountain Valley to
+                give back to the community that has given so much to him.
               </p>
             </div>
             <div className='border-2 border-gray-900 justify-center flex flex-col items-center w-96 h-64'>
-              <p className='text-xl font-montserrat'>[Insert Badass Photo of our guy Adam]</p>
+              <p className='text-xl font-montserrat'>
+                [Insert Badass Photo of our guy Adam]
+              </p>
             </div>
           </div>
         </motion.div>
@@ -121,7 +129,10 @@ const Benefits = ({ setSelectedPage }: Props) => {
               <HText>
                 JOIN THE<span className='text-cyan-500'> FAMILY</span>
               </HText>
-              <p>ENJOY THE COMRADERY OF A SWIM TEAM WHILE GETTING FIT, SKILLED AND STRONG</p>
+              <p>
+                ENJOY THE COMRADERY OF A SWIM TEAM WHILE GETTING FIT, SKILLED
+                AND STRONG
+              </p>
             </motion.div>
 
             {/* DESCRIPT */}
@@ -136,13 +147,15 @@ const Benefits = ({ setSelectedPage }: Props) => {
               }}
             >
               <p className='my-5'>
-                Nascetur aenean massa auctor tincidunt. Iaculis potenti amet egestas ultrices
-                consectetur adipiscing ultricies enim. Pulvinar fames vitae vitae quis. Quis amet.
+                Nascetur aenean massa auctor tincidunt. Iaculis potenti amet
+                egestas ultrices consectetur adipiscing ultricies enim. Pulvinar
+                fames vitae vitae quis. Quis amet.
               </p>
               <p className='mb-5'>
-                Fringilla a sed at suspendisse ut enim volutpat. Rhoncus vel est tellus quam
-                porttitor. Mauris velit euismod elementum arcu neque facilisi. Amet semper tortor
-                facilisis metus nibh. Rhoncus sit enim mattis odio in risus nunc.
+                Fringilla a sed at suspendisse ut enim volutpat. Rhoncus vel est
+                tellus quam porttitor. Mauris velit euismod elementum arcu neque
+                facilisi. Amet semper tortor facilisis metus nibh. Rhoncus sit
+                enim mattis odio in risus nunc.
               </p>
             </motion.div>
 

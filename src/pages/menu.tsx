@@ -12,20 +12,26 @@ const MenuPage: FC = () => {
   const router = useRouter()
 
   const [selectedTime, setSelectedTime] = useState<string | null>(null) // as ISO string
-  const { isFetchedAfterMount } = trpc.menu.checkMenuStatus.useQuery(undefined, {
-    onError: () => {
-      // Check for validity of selectedTime failed
-      // Handle error accordingly (e.g. redirect to home page)
+  const { isFetchedAfterMount } = trpc.menu.checkMenuStatus.useQuery(
+    undefined,
+    {
+      onError: () => {
+        // Check for validity of selectedTime failed
+        // Handle error accordingly (e.g. redirect to home page)
+      }
     }
-  })
+  )
   const [showCart, setShowCart] = useState<boolean>(false)
-  const [productsInCart, setProductsInCart] = useState<{ id: string; quantity: number }[]>([])
+  const [productsInCart, setProductsInCart] = useState<
+    { id: string; quantity: number }[]
+  >([])
   const addToCart = (id: string, quantity: number) => {
     setProductsInCart((prev) => {
       const existing = prev.find((item) => item.id === id)
       if (existing) {
         return prev.map((item) => {
-          if (item.id === id) return { ...item, quantity: item.quantity + quantity }
+          if (item.id === id)
+            return { ...item, quantity: item.quantity + quantity }
           return item
         })
       }
@@ -49,7 +55,7 @@ const MenuPage: FC = () => {
   }, [router])
 
   return (
-    <div className='bg-gray-200'>
+    <div className=''>
       <Cart
         removeFromCart={removeFromCart}
         open={showCart}
@@ -57,16 +63,19 @@ const MenuPage: FC = () => {
         products={productsInCart}
       />
       {isFetchedAfterMount && selectedTime ? (
-        <div className='bg-gray-100 '>
+        <div className='flex flex-col justify-center items-center w-full mt-10'>
           {/* Cart Icon */}
 
-          <button type='button' onClick={() => setShowCart((prev) => !prev)} className='px-10 '>
-            <BsCart className='m-2 text-5xl' />
+          <Menu addToCart={addToCart} selectedTime={selectedTime} />
+          <button
+            type='button'
+            onClick={() => setShowCart((prev) => !prev)}
+            className='bg-green-500 px-10 rounded-lg flex gap-4 justify-center items-center border-2 border-gray-600 hover:shadow-lg'
+          >
+            <BsCart className='m-2 text-4xl text-gray-800' />
 
             {productsInCart.reduce((acc, item) => acc + item.quantity, 0)}
           </button>
-
-          <Menu addToCart={addToCart} selectedTime={selectedTime} />
         </div>
       ) : (
         <div className='flex h-screen items-center justify-center'>

@@ -111,7 +111,7 @@ const Menu: FC = () => {
 
   return (
     <>
-      <div className='mx-auto flex flex-col max-w-xl gap-2  '>
+      <div className='mx-auto flex flex-col max-w-xl gap-2 bg-blue-400 '>
         <input
           name='name'
           className='h-12 rounded-lg bg-gray-600 pl-2'
@@ -154,7 +154,7 @@ const Menu: FC = () => {
             name='file'
             id='file'
             onChange={handleFileSelect}
-            accept='image/jpeg image/png image/jpg'
+            accept='image/jpeg image/png image/jpg image/webp'
             type='file'
             className='mx-auto  flex w-full border-2 border-gray-800 justify-center items-center rounded-lg'
           />

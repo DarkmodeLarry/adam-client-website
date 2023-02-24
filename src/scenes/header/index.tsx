@@ -28,7 +28,9 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
             {/* LEFT SIDE */}
             <div className='flex items-center gap-4 font-montserrat'>
               <GiDolphin className='text-5xl text-gray-400' />
-              <p className=' font-bold tracking-widest font-montserrat'>Coach Adam</p>
+              <p className=' font-bold tracking-widest font-montserrat'>
+                Coach Adam
+              </p>
             </div>
 
             {/* RIGHT SIDE */}
@@ -72,7 +74,9 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                 </div>
                 <div className='flex justify-center items-center gap-4 bg-gray-200 rounded-full p-2'>
                   <User className='h-12 w-12 text-gray-400 bg-gray-500 rounded-full' />
-                  <p className='text-gray-900 font-montserrat bg-gray-00'>Welcome Back Swimmer!</p>
+                  <p className='text-gray-900 font-montserrat bg-gray-00'>
+                    Welcome Back Swimmer!
+                  </p>
                 </div>
               </div>
             ) : (
@@ -103,7 +107,11 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
 
           {/* MENU ITEMS */}
           <div className='ml-[33%] flex flex-col gap-10 text-2xl '>
-            <NavLink page='Home' selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
+            <NavLink
+              page='Home'
+              selectedPage={selectedPage}
+              setSelectedPage={setSelectedPage}
+            />
             <NavLink
               page='Benefits'
               selectedPage={selectedPage}
@@ -119,6 +127,11 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />
+            <Link href='/login' className={`${flexBetween} `}>
+              <p className='font-semibold hover:shadow-2xl hover:border-2 hover:rounded-2xl px-3 py-2 transition-all hover:text-yellow-400'>
+                Sign In
+              </p>
+            </Link>
           </div>
         </div>
       )}
