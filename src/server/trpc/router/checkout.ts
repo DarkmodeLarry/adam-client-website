@@ -3,7 +3,7 @@ import { z } from 'zod'
 import _stripe from 'stripe'
 import { TRPCError } from '@trpc/server'
 
-const stripe = new _stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripe = new _stripe(process.env.STRIPE_TEST_KEY!, {
   apiVersion: '2022-11-15'
 })
 
@@ -31,11 +31,15 @@ export const checkoutRouter = router({
           })
         ).map((p) => ({
           ...p,
-          quantity: input.products.find((product) => product.id === p.id)?.quantity || 0
+          quantity:
+            input.products.find((product) => product.id === p.id)?.quantity || 0
         }))
 
         if (productsInCart.length !== input.products.length) {
-          throw new TRPCError({ code: 'CONFLICT', message: 'Some products are not available' })
+          throw new TRPCError({
+            code: 'CONFLICT',
+            message: 'Some products are not available'
+          })
         }
 
         const session = await stripe.checkout.sessions.create({
