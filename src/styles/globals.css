@@ -14,7 +14,7 @@
 
 @layer components {
   .adminBtn {
-    @apply font-montserrat border-2  border-gray-400 text-gray-100 flex flex-col justify-center items-center font-semibold text-xl  w-96 h-20 bg-gray-600 shadow-xl hover:shadow-lg  whitespace-nowrap hover:shadow-black hover:bg-gray-200 hover:text-gray-900 hover:border-2 hover:border-gray-900 hover:scale-95 active:scale-90 hover:translate-y-2 duration-200 transition-all hover:outline-double hover:ring-2 hover:ring-white hover:ring-offset-4 rounded-md  shadow-gray-800 hover:bg-gradient-to-r from-cyan-400 via-gray-400 to-yellow-500;
+    @apply font-montserrat border-2  border-gray-400 text-gray-100 flex flex-col justify-center items-center font-semibold text-xl w-80 h-20 bg-gray-600 shadow-xl hover:shadow-lg  whitespace-nowrap hover:shadow-black hover:bg-gray-200 hover:text-gray-900 hover:border-2 hover:border-gray-900 hover:scale-95 active:scale-90 hover:translate-y-2 duration-200 transition-all hover:outline-double hover:ring-2 hover:ring-white hover:ring-offset-4 rounded-md  shadow-gray-800 hover:bg-gradient-to-br from-cyan-400 to-cyan-600;
   }
 }
 
@@ -74,7 +74,11 @@ h1,
   min-height: 100vh;
   max-height: 100vh;
   background-color: hsla(199, 97%, 45%, 1);
-  background-image: radial-gradient(at 20% 0%, rgb(228, 247, 242) 5px, transparent 50%);
+  background-image: radial-gradient(
+    at 20% 0%,
+    rgb(228, 247, 242) 5px,
+    transparent 50%
+  );
 }
 
 .hers {

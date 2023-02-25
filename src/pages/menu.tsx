@@ -55,7 +55,7 @@ const MenuPage: FC = () => {
   }, [router])
 
   return (
-    <div className=''>
+    <>
       <Cart
         removeFromCart={removeFromCart}
         open={showCart}
@@ -73,7 +73,6 @@ const MenuPage: FC = () => {
             className='bg-green-500 px-10 rounded-lg flex gap-4 justify-center items-center border-2 border-gray-600 hover:shadow-lg'
           >
             <BsCart className='m-2 text-4xl text-gray-800' />
-
             {productsInCart.reduce((acc, item) => acc + item.quantity, 0)}
           </button>
         </div>
@@ -82,7 +81,7 @@ const MenuPage: FC = () => {
           <Spinner />
         </div>
       )}
-    </div>
+    </>
   )
 }
 

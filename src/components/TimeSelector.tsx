@@ -23,7 +23,11 @@ for (let i = 5; i < 20; i++) {
   }
 }
 
-const TimeSelector: FC<TimeSelectorProps> = ({ selected, changeTime, type }) => {
+const TimeSelector: FC<TimeSelectorProps> = ({
+  selected,
+  changeTime,
+  type
+}) => {
   // generate time options from 00:00 to 23:30
 
   if (!selected) return <p>none selected</p>
@@ -43,11 +47,11 @@ const TimeSelector: FC<TimeSelectorProps> = ({ selected, changeTime, type }) => 
     >
       {({ open }) => (
         <>
-          <Listbox.Label className='block w-32 text-sm font-medium text-gray-700'>
+          <Listbox.Label className='block w-32 text-center text-sm font-medium text-blue-700'>
             {type === 'openTime' ? 'Opening time' : 'Closing time'}
           </Listbox.Label>
           <div className='relative mt-1'>
-            <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
+            <Listbox.Button className='relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'>
               <div className='flex items-center'>
                 <span
                   aria-label={true ? 'Online' : 'Offline'}
@@ -59,7 +63,10 @@ const TimeSelector: FC<TimeSelectorProps> = ({ selected, changeTime, type }) => 
                 <span className='ml-3 block truncate'>{selected}</span>
               </div>
               <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
-                <HiSelector className='h-5 w-5 text-gray-400' aria-hidden='true' />
+                <HiSelector
+                  className='h-5 w-5 text-gray-400'
+                  aria-hidden='true'
+                />
               </span>
             </Listbox.Button>
 
@@ -88,7 +95,9 @@ const TimeSelector: FC<TimeSelectorProps> = ({ selected, changeTime, type }) => 
                           <div className='flex items-center'>
                             <span
                               className={classNames(
-                                time === selected ? 'bg-green-500' : 'bg-blue-800',
+                                time === selected
+                                  ? 'bg-green-500'
+                                  : 'bg-blue-800',
                                 'inline-block h-2 w-2 flex-shrink-0 rounded-full'
                               )}
                               aria-hidden='true'
@@ -100,7 +109,10 @@ const TimeSelector: FC<TimeSelectorProps> = ({ selected, changeTime, type }) => 
                               )}
                             >
                               {time}
-                              <span className='sr-only'> is {true ? 'online' : 'offline'}</span>
+                              <span className='sr-only'>
+                                {' '}
+                                is {true ? 'online' : 'offline'}
+                              </span>
                             </span>
                           </div>
 

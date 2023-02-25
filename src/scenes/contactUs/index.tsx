@@ -25,7 +25,9 @@ const ContactUs = ({ setSelectedPage }: Props) => {
 
   return (
     <section id='contactus' className='mx-auto w-5/6 max-w-full h-full my-8'>
-      <motion.div onViewportEnter={() => setSelectedPage(SelectedPage.ContactUs)}>
+      <motion.div
+        onViewportEnter={() => setSelectedPage(SelectedPage.ContactUs)}
+      >
         {/* HEADER */}
         <motion.div
           className='md:w-3/5'
@@ -38,7 +40,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
             visible: { opacity: 1, x: 0 }
           }}
         >
-          <h1 className='text-primary-500'>DO YOU HAVE ANY QUESTIONS?</h1>
+          <h2 className=''>DO YOU HAVE ANY QUESTIONS?</h2>
 
           <p className='my-5'>Contact Adam for more information!</p>
         </motion.div>
@@ -74,7 +76,8 @@ const ContactUs = ({ setSelectedPage }: Props) => {
               {errors.name && (
                 <p className='mt-1 text-primary-500'>
                   {errors.name.type === 'required' && 'This field is required.'}
-                  {errors.name.type === 'maxLength' && 'Max length is 100 char.'}
+                  {errors.name.type === 'maxLength' &&
+                    'Max length is 100 char.'}
                 </p>
               )}
 
@@ -89,7 +92,8 @@ const ContactUs = ({ setSelectedPage }: Props) => {
               />
               {errors.email && (
                 <p className='mt-1 text-primary-500'>
-                  {errors.email.type === 'required' && 'This field is required.'}
+                  {errors.email.type === 'required' &&
+                    'This field is required.'}
                   {errors.email.type === 'pattern' && 'Invalid email address.'}
                 </p>
               )}
@@ -106,8 +110,10 @@ const ContactUs = ({ setSelectedPage }: Props) => {
               />
               {errors.message && (
                 <p className='mt-1 text-primary-500'>
-                  {errors.message.type === 'required' && 'This field is required.'}
-                  {errors.message.type === 'maxLength' && 'Max length is 2000 char.'}
+                  {errors.message.type === 'required' &&
+                    'This field is required.'}
+                  {errors.message.type === 'maxLength' &&
+                    'Max length is 2000 char.'}
                 </p>
               )}
 

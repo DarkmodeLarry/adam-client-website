@@ -14,7 +14,7 @@ const config = {
     defaultLocale: 'en'
   },
   images: {
-    domains: ['adam-swim.s3.us-west-1.amazonaws.com']
+    domains: ['adam-swim.s3.us-west-1.amazonaws.com', 'tailwindui.com']
   }
 }
 export default config

@@ -46,21 +46,23 @@ const Menu: FC = () => {
 
   // tRPC
   const { mutateAsync: addItem } = trpc.admin.addMenuItem.useMutation()
-  const { mutateAsync: createPresignedUrl } = trpc.admin.createPresignedUrl.useMutation()
+  const { mutateAsync: createPresignedUrl } =
+    trpc.admin.createPresignedUrl.useMutation()
   const { data: menuItems, refetch } = trpc.menu.getMenuItems.useQuery()
-  const { mutateAsync: deleteMenuItem } = trpc.admin.deleteMenuItem.useMutation()
+  const { mutateAsync: deleteMenuItem } =
+    trpc.admin.deleteMenuItem.useMutation()
 
   const handleDelete = async (imageKey: string, id: string) => {
     await deleteMenuItem({ id, imageKey })
     refetch()
   }
 
-  const handleImgUpload = async () => {
+  const handleImageUpload = async () => {
     const { file } = input
     if (!file) return
 
     // get url from aws to upload file to:
-    const { url, fields, key } = await createPresignedUrl({
+    const { fields, key, url } = await createPresignedUrl({
       fileType: file.type
     })
 
@@ -86,13 +88,15 @@ const Menu: FC = () => {
   }
 
   const addMenuItem = async () => {
-    const key = await handleImgUpload()
+    const key = await handleImageUpload()
     if (!key) throw new Error('No key')
 
     await addItem({
       name: input.name,
       imageKey: key,
-      categories: input.categories.map((c) => c.value as Exclude<Categories, 'all'>),
+      categories: input.categories.map(
+        (c) => c.value as Exclude<Categories, 'all'>
+      ),
       price: input.price
     })
 
@@ -111,89 +115,101 @@ const Menu: FC = () => {
 
   return (
     <>
-      <div className='mx-auto flex flex-col max-w-xl gap-2 bg-blue-400 '>
-        <input
-          name='name'
-          className='h-12 rounded-lg bg-gray-600 pl-2'
-          type='text'
-          placeholder=' Name of Training Type'
-          onChange={handleTextChange}
-          value={input.name}
-        />
-
-        <input
-          name='price'
-          className='h-12 rounded-lg w-full bg-gray-600 pl-3'
-          type='number'
-          placeholder='price'
-          onChange={(e) => setInput((prev) => ({ ...prev, price: Number(e.target.value) }))}
-          value={input.price}
-        />
-
-        <DynamicSelect
-          value={input.categories}
-          // @ts-ignore - when using dynamic import, typescript doesn't know about the onChange prop
-          onChange={(e) => setInput((prev) => ({ ...prev, categories: e }))}
-          isMulti
-          className='rounded-lg w-full'
-          options={selectOptions}
-        />
-
-        <label htmlFor='file' className='h-12 cursor-pointer rounded-sm font-medium'>
-          <span className='sr-only'>File input</span>
-          <div className='flex w-full p-2 h-full items-center justify-center rounded-lg border-gray-800 bg-gray-700 text-white text-center'>
-            {preview ? (
-              <div className='relative w-full rounded-lg'>
-                <Image alt='preview' style={{ objectFit: 'contain' }} fill src={preview} />
-              </div>
-            ) : (
-              <span>Select image</span>
-            )}
-          </div>
+      <div className='max-w-full bg-gray-400 min-h-screen'>
+        <div className='justify-center flex flex-col py-5 px-5 gap-2 '>
+          <h2 className='text-center text-4xl font-semibold my-5'>Menu Edit</h2>
           <input
-            name='file'
-            id='file'
-            onChange={handleFileSelect}
-            accept='image/jpeg image/png image/jpg image/webp'
-            type='file'
-            className='mx-auto  flex w-full border-2 border-gray-800 justify-center items-center rounded-lg'
+            name='name'
+            className='h-12 rounded-sm bg-gray-600 pl-2'
+            type='text'
+            placeholder=' Name of Training Type'
+            onChange={handleTextChange}
+            value={input.name}
           />
-        </label>
 
-        <button
-          className='h-12 disabled:cursor-not-allowed  adminBtn rounded-lg pl-3'
-          disabled={!input.file || !input.name}
-          onClick={addMenuItem}
-        >
-          Add menu item
-        </button>
+          <input
+            name='price'
+            className='h-12 rounded-sm bg-gray-200 pl-3'
+            type='number'
+            placeholder='price'
+            onChange={(e) =>
+              setInput((prev) => ({ ...prev, price: Number(e.target.value) }))
+            }
+            value={input.price}
+          />
 
-        {error && <p className='text-xs font-bold font-montserrat text-red-600'>{error}</p>}
+          <DynamicSelect
+            value={input.categories}
+            // @ts-ignore - when using dynamic import, typescript doesn't know about the onChange prop
+            onChange={(e) => setInput((prev) => ({ ...prev, categories: e }))}
+            isMulti
+            className='h-12 '
+            options={selectOptions}
+          />
 
-        <div className='mx-auto max-w-7xl mt-16'>
-          <p className='text-semibold text-center text-lg'>Your Current Menu Items:</p>
-          <div className='flex'>
-            {menuItems?.map((menuItem) => (
-              <div key={menuItem.id} className='m-5'>
-                <p className='font-semibold '>{menuItem.name}</p>
-                <div className='border-2 border-cyan-900 rounded-xl bg-gray-200'>
+          <label
+            htmlFor='file'
+            className='h-12 relative cursor-pointer rounded-sm font-medium bg-gray-200 text-indigo-600 focus-within:outline-none'
+          >
+            <span className='sr-only'>File input</span>
+            <div className='flex h-full items-center justify-center text-white text-center bg-gray-600'>
+              {preview ? (
+                <div className='relative w-full h-3/4 bg-gray-600'>
                   <Image
-                    priority
-                    height={200}
-                    width={200}
-                    alt=''
-                    src={menuItem.url}
-                    className='rounded-xl object-fit'
+                    alt='preview'
+                    style={{ objectFit: 'contain' }}
+                    fill
+                    src={preview}
                   />
                 </div>
-                <button
-                  onClick={() => handleDelete(menuItem.imageKey, menuItem.id)}
-                  className='text-xs text-red-600 pl-2 font-semibold hover:font-extrabold transition-all duration-150'
-                >
-                  Delete
-                </button>
-              </div>
-            ))}
+              ) : (
+                <span>Select image</span>
+              )}
+            </div>
+            <input
+              name='file'
+              id='file'
+              onChange={handleFileSelect}
+              accept='image/jpeg image/png image/jpg image/webp'
+              type='file'
+              className='sr-only '
+            />
+          </label>
+
+          <button
+            className='h-12 disabled:cursor-not-allowed  font-montserrat border-2  border-gray-400 text-gray-100 flex flex-col justify-center items-center font-semibold text-xl bg-gray-600 shadow-xl hover:shadow-lg  whitespace-nowrap hover:shadow-black hover:bg-gray-200 hover:text-gray-900 hover:border-2 hover:border-gray-900 hover:scale-95 active:scale-90 hover:translate-y-2 duration-200 transition-all  rounded-sm'
+            disabled={!input.file || !input.name}
+            onClick={addMenuItem}
+          >
+            Add menu item
+          </button>
+
+          {error && (
+            <p className='text-xs font-bold font-montserrat text-red-600'>
+              {error}
+            </p>
+          )}
+
+          <div className='mx-auto max-w-7xl mt-10'>
+            <p className='text-semibold text-center text-2xl'>
+              Your Current Menu Items:
+            </p>
+            <div className='grid grid-cols-3 mb-12 mt-10 gap-4'>
+              {menuItems?.map((menuItem) => (
+                <div key={menuItem.id} className=''>
+                  <p className='font-semibold text-center '>{menuItem.name}</p>
+                  <div className='border-2 relative h-28 w-28 border-cyan-900 rounded-lg bg-gray-200'>
+                    <Image priority fill alt='' src={menuItem.url} />
+                  </div>
+                  <button
+                    onClick={() => handleDelete(menuItem.imageKey, menuItem.id)}
+                    className='text-md text-red-600 mt-2 mx-auto w-full font-md hover:font-extrabold transition-all duration-200'
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

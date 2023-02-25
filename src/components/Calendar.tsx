@@ -42,18 +42,24 @@ const CalendarComponent: FC<CalendarProps> = ({ days, closedDays }) => {
   return (
     <section
       id='calendar'
-      className='calendar h-screen justify-center w-full bg-gray-900 flex flex-col items-center '
+      className='calendar  justify-center w-full bg-gray-900 flex flex-col items-center '
     >
-      <h1 className='text-4xl font-montserrat mb-10 text-white'>Select an Appointment</h1>
+      <h1 className='text-2xl md:text-4xl font-montserrat my-10 text-center text-white'>
+        Select an Appointment
+      </h1>
       <div className='flex flex-col md:flex-row w-full items-center'>
         <div className='w-1/2 flex flex-col gap-10 justify-center items-center '>
-          <p className='text-2xl text-gray-200 w-full text-center font-montserrat'>Pick a Date</p>
+          <p className='text-2xl text-gray-200 w-full text-center font-montserrat'>
+            Pick a Date
+          </p>
           <DynamicCalendar
             minDate={now}
             className='REACT-CALENDAR p-2 md:mb-10'
             view='month'
             tileDisabled={({ date }) => closedDays.includes(formatISO(date))}
-            onClickDay={(date) => setDate((prev) => ({ ...prev, justDate: date }))}
+            onClickDay={(date) =>
+              setDate((prev) => ({ ...prev, justDate: date }))
+            }
           />
         </div>
 
@@ -61,14 +67,16 @@ const CalendarComponent: FC<CalendarProps> = ({ days, closedDays }) => {
           <h3 className='text-white text-center font-montserrat tracking-wider w-full text-2xl'>
             Pick a Time
           </h3>
-          <div className='gap-2 flex flex-wrap items-center p-2 mt-5 mb-10'>
+          <div className='gap-2 flex flex-wrap items-center p-2 mt-5 mb-44'>
             {date.justDate &&
               times?.map((time, i) => (
                 <div key={`time-${i}`} className=''>
                   <button
                     type='button'
                     className='flex font-semibold text-md text-black w-28 h-10 justify-center items-center bg-gray-100 shadow-md shadow-gray-500 rounded-lg border-2  transition-all duration-300 ease-in-out hover:scale-95 hover:bg-gray-700 hover:border-white hover:text-gray-100'
-                    onClick={() => setDate((prev) => ({ ...prev, dateTime: time }))}
+                    onClick={() =>
+                      setDate((prev) => ({ ...prev, dateTime: time }))
+                    }
                   >
                     {format(time, 'hh:mm aa')}
                   </button>

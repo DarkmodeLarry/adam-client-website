@@ -8,7 +8,6 @@ import toast, { Toaster } from 'react-hot-toast'
 import { now } from 'src/constants/config'
 import { capitalize, classNames, weekdayIndexToName } from '../../utils/helpers'
 import { trpc } from 'src/utils/trpc'
-
 import { prisma } from '../../server/db/client'
 
 interface OpeningProps {
@@ -20,30 +19,66 @@ const Opening: FC<OpeningProps> = ({ days }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 
   const [openingHrs, setOpeningHrs] = useState([
-    { name: 'sunday', openTime: days[0]!.openTime, closeTime: days[0]!.closeTime },
-    { name: 'monday', openTime: days[1]!.openTime, closeTime: days[1]!.closeTime },
-    { name: 'tuesday', openTime: days[2]!.openTime, closeTime: days[2]!.closeTime },
-    { name: 'wednesday', openTime: days[3]!.openTime, closeTime: days[3]!.closeTime },
-    { name: 'thursday', openTime: days[4]!.openTime, closeTime: days[4]!.closeTime },
-    { name: 'friday', openTime: days[5]!.openTime, closeTime: days[5]!.closeTime },
-    { name: 'saturday', openTime: days[6]!.openTime, closeTime: days[6]!.closeTime }
+    {
+      name: 'sunday',
+      openTime: days[0]!.openTime,
+      closeTime: days[0]!.closeTime
+    },
+    {
+      name: 'monday',
+      openTime: days[1]!.openTime,
+      closeTime: days[1]!.closeTime
+    },
+    {
+      name: 'tuesday',
+      openTime: days[2]!.openTime,
+      closeTime: days[2]!.closeTime
+    },
+    {
+      name: 'wednesday',
+      openTime: days[3]!.openTime,
+      closeTime: days[3]!.closeTime
+    },
+    {
+      name: 'thursday',
+      openTime: days[4]!.openTime,
+      closeTime: days[4]!.closeTime
+    },
+    {
+      name: 'friday',
+      openTime: days[5]!.openTime,
+      closeTime: days[5]!.closeTime
+    },
+    {
+      name: 'saturday',
+      openTime: days[6]!.openTime,
+      closeTime: days[6]!.closeTime
+    }
   ])
 
   // tRPC
-  const { mutate: saveOpeningHrs } = trpc.opening.changeOpeningHours.useMutation({
-    onSuccess: () => toast.success('Opening hours saved'),
-    onError: () => toast.error('Something went wrong')
+  const { mutate: saveOpeningHrs } =
+    trpc.opening.changeOpeningHours.useMutation({
+      onSuccess: () => toast.success('Opening hours saved'),
+      onError: () => toast.error('Something went wrong')
+    })
+  const { mutate: closeDay } = trpc.opening.closeDay.useMutation({
+    onSuccess: () => refetch()
   })
-  const { mutate: closeDay } = trpc.opening.closeDay.useMutation({ onSuccess: () => refetch() })
-  const { mutate: openDay } = trpc.opening.openDay.useMutation({ onSuccess: () => refetch() })
+  const { mutate: openDay } = trpc.opening.openDay.useMutation({
+    onSuccess: () => refetch()
+  })
   const { data: closedDays, refetch } = trpc.opening.getClosedDays.useQuery()
 
-  const dayIsClosed = selectedDate && closedDays?.includes(formatISO(selectedDate))
+  const dayIsClosed =
+    selectedDate && closedDays?.includes(formatISO(selectedDate))
 
   // Curried function for easier usage
   function _changeTime(day: Day) {
     return function (time: string, type: 'openTime' | 'closeTime') {
-      const index = openingHrs.findIndex((x) => x.name === weekdayIndexToName(day.dayOfWeek))
+      const index = openingHrs.findIndex(
+        (x) => x.name === weekdayIndexToName(day.dayOfWeek)
+      )
       const newOpeningHrs = [...openingHrs]
       newOpeningHrs[index]![type] = time
       setOpeningHrs(newOpeningHrs)
@@ -51,7 +86,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
   }
 
   return (
-    <div className='bg-gradient-to-t from-gray-200 via-gray-300 to-gray-200 font-medium mx-auto border-black'>
+    <div className='bg-gradient-to-t from-gray-200 via-gray-300 to-gray-200 font-medium mx-auto'>
       <Toaster />
       <div className='flex items-center justify-center gap-6 bg-gray-900 py-10 text-white font-bold tracking-widest '>
         <p className={`${!enabled ? 'font-medium' : ''}`}>Opening Times</p>
@@ -77,31 +112,40 @@ const Opening: FC<OpeningProps> = ({ days }) => {
 
       {!enabled ? (
         // Opening times options
-        <div className='my-12 flex flex-col gap-8 max-w-xl mx-auto h-screen'>
+        <div className=' flex flex-col items-center mt-10 gap-6 h-screen'>
           {days.map((day) => {
             const changeTime = _changeTime(day)
             return (
-              <div className='grid grid-cols-3 place-items-center' key={day.id}>
-                <h3 className='font-semibold'>{capitalize(weekdayIndexToName(day.dayOfWeek)!)}</h3>
-                <div className='mx-4'>
+              <div
+                className='grid grid-cols-3 items-center justify-center gap-2 md:gap-4 text-md px-4'
+                key={day.id}
+              >
+                <h3 className='font-semibold '>
+                  {capitalize(weekdayIndexToName(day.dayOfWeek)!)}
+                </h3>
+                <div className=''>
                   <TimeSelector
                     type='openTime'
                     changeTime={changeTime}
                     selected={
                       openingHrs[
-                        openingHrs.findIndex((x) => x.name === weekdayIndexToName(day.dayOfWeek))
+                        openingHrs.findIndex(
+                          (x) => x.name === weekdayIndexToName(day.dayOfWeek)
+                        )
                       ]?.openTime
                     }
                   />
                 </div>
 
-                <div className='mx-4'>
+                <div className=''>
                   <TimeSelector
                     type='closeTime'
                     changeTime={changeTime}
                     selected={
                       openingHrs[
-                        openingHrs.findIndex((x) => x.name === weekdayIndexToName(day.dayOfWeek))
+                        openingHrs.findIndex(
+                          (x) => x.name === weekdayIndexToName(day.dayOfWeek)
+                        )
                       ]?.closeTime
                     }
                   />
@@ -110,7 +154,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
             )
           })}
           <button
-            className='text-gray-900 text-2xl  '
+            className='text-gray-900 text-lg md:text-2xl  '
             onClick={() => {
               const withId = openingHrs.map((day) => ({
                 ...day,

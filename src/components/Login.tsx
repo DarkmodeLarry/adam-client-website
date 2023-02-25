@@ -26,15 +26,15 @@ const Login: FC = () => {
   }
 
   return (
-    <div className='loginPage relative flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 border-cyan-300'>
+    <div className='loginPage flex flex-col min-h-full items-center justify-center border-cyan-300 z-30 p-5'>
+      <Image
+        className=''
+        src={Dolphin}
+        alt='Workflow'
+        height={200}
+        width={200}
+      />
       <div className='w-full h-full max-w-md space-y-10 shadow-2xl border-2 border-transparent rounded-2xl px-10 pb-16'>
-        <Image
-          className='absolute top-20 left-50'
-          src={Dolphin}
-          alt='Workflow'
-          height={300}
-          width={300}
-        />
         <div>
           <h2 className='mt-6 text-center text-3xl font-bold text-gray-900'>
             Sign in to your account

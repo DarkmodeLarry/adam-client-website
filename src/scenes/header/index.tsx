@@ -28,16 +28,16 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
             {/* LEFT SIDE */}
             <div className='flex items-center gap-4 font-montserrat'>
               <GiDolphin className='text-5xl text-gray-400' />
-              <p className=' font-bold tracking-widest font-montserrat'>
+              <p className='text-gray-400 font-bold tracking-widest font-montserrat'>
                 Coach Adam
               </p>
             </div>
 
             {/* RIGHT SIDE */}
             {isAboveMediumScreens ? (
-              <div className='flex items-center justify-evenly w-5/6'>
+              <div className='flex items-center justify-between w-full'>
                 <div
-                  className={`items-center flex justify-center font-montserrat gap-8 font-semibold text-gray-100 text-lg`}
+                  className={`items-center flex justify-center font-montserrat gap-8 text-gray-100 text-md w-full`}
                 >
                   <NavLink
                     page='Home'
@@ -45,7 +45,7 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                     setSelectedPage={setSelectedPage}
                   />
                   <NavLink
-                    page='Benefits'
+                    page='About'
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
@@ -56,7 +56,7 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                     setSelectedPage={setSelectedPage}
                   />
 
-                  <div className='flex gap-4 text-xl font-semibold text-gray-200'>
+                  <div className='flex gap-4 text- font-semibold text-gray-200'>
                     <Link href='/login' className={`${flexBetween} gap-8`}>
                       <p className='font-semibold hover:shadow-2xl hover:border-2 hover:rounded-2xl px-3 py-2 transition-all hover:text-yellow-400'>
                         Sign In
@@ -113,7 +113,7 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
               setSelectedPage={setSelectedPage}
             />
             <NavLink
-              page='Benefits'
+              page='About'
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />

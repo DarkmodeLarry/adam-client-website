@@ -1,21 +1,24 @@
 import { s3 } from '@lib/s3'
-import { adminProcedure, publicProcedure, router } from '../trpc'
-import { z } from 'zod'
+import { TRPCError } from '@trpc/server'
+import cookie from 'cookie'
 import { SignJWT } from 'jose'
 import { nanoid } from 'nanoid'
-import { getJwtSecretKey } from '../../../lib/auth'
-import cookie from 'cookie'
-import { TRPCError } from '@trpc/server'
 import { MAX_FILE_SIZE } from 'src/constants/config'
+import { z } from 'zod'
+import { getJwtSecretKey } from '../../../lib/auth'
+import { adminProcedure, publicProcedure, router } from '../trpc'
 
 export const adminRouter = router({
   login: publicProcedure
-    .input(z.object({ email: z.string().email(), password: z.string() }))
-    .mutation(async ({ ctx, input }) => {
+    .input(z.object({ email: z.string() /*.email() */, password: z.string() }))
+    .mutation(async ({ input, ctx }) => {
       const { res } = ctx
       const { email, password } = input
 
-      if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+      if (
+        email === process.env.ADMIN_EMAIL &&
+        password === process.env.ADMIN_PASSWORD
+      ) {
         // validating
         // user is authenticated as admin
         const token = await new SignJWT({})
@@ -76,7 +79,13 @@ export const adminRouter = router({
         name: z.string(),
         price: z.number(),
         imageKey: z.string(),
-        categories: z.array(z.union([z.literal('private'), z.literal('group'), z.literal('other')]))
+        categories: z.array(
+          z.union([
+            z.literal('private'),
+            z.literal('group'),
+            z.literal('other')
+          ])
+        )
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -85,8 +94,8 @@ export const adminRouter = router({
         data: {
           name,
           price,
-          categories,
-          imageKey
+          imageKey,
+          categories
         }
       })
 

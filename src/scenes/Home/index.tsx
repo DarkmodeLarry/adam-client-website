@@ -12,7 +12,7 @@ const Home = ({ setSelectedPage }: Props) => {
   return (
     <section
       id='home'
-      className='flex flex-col justify-between items-center scrollbar-hide pt-24 pb-16 hero max-w-full w-full bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-cyan-200 to-cyan-900'
+      className='flex flex-col justify-between items-center scrollbar-hide pt-24 pb-16 hero max-w-full w-full bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-cyan-500 to-cyan-900'
     >
       {/* IMAGE AND MAIN HEADER */}
       <motion.div
@@ -35,18 +35,24 @@ const Home = ({ setSelectedPage }: Props) => {
           >
             <div className='flex flex-col'>
               <h1 className='text-center text-5xl font-bold tracking-wide'>
-                Keep Swimming
+                Keep On Swimming
               </h1>
               {/* IMAGES */}
               <div className='flex mt-8 '>
-                <Image alt='home-pageGraphic' src={Adam} className='w-[75%]' />
-                <p className='headings mt-5 text-2xl text-center'>
+                <Image
+                  alt='home-pageGraphic'
+                  priority
+                  src={Adam}
+                  className='w-[75%]'
+                />
+                <p className=' mt-5 text-2xl text-center tracking-widest text-gray-100'>
                   With Coach Adam
                 </p>
               </div>
             </div>
-            <p className='mt-8 text-lg w-full font-montserrat tracking-widest text-gray-900  text-center '>
-              Fitness. Technique. Confidence. Leadership.
+            <p className='my-8 text-lg w-full text-gray-300  text-center tracking-widest'>
+              Fit | Healthy | Confident |{' '}
+              <span className='text-orange-400 font-semibold'>Lifestyle</span>
             </p>
           </motion.div>
 
@@ -63,7 +69,7 @@ const Home = ({ setSelectedPage }: Props) => {
             }}
           >
             <button className='button'>Join Now</button>
-            <AnchorLink className='text-md font-bold text-gray-800 underline hover:text-secondary-500 hover:rounded-xl hover:border-2 hover:px-4 hover:py-2 px-4 py-2 transition-all duration-300 cursor-pointer'>
+            <AnchorLink className='text-md text-gray-100 hover:text-secondary-500 hover:rounded-xl hover:border-2  hover:px-4 hover:py-2 px-4 py-2 transition-all duration-300 cursor-pointer'>
               <p>Learn More</p>
             </AnchorLink>
           </motion.div>
