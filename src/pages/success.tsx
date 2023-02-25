@@ -7,7 +7,7 @@ import { trpc } from 'src/utils/trpc'
 
 interface successProps {}
 
-const success: FC<successProps> = ({}) => {
+const Success: FC<successProps> = ({}) => {
   const [products, setProducts] = useState<
     { id: string; quantity: number }[] | null | false
   >(null)
@@ -112,4 +112,4 @@ const success: FC<successProps> = ({}) => {
   )
 }
 
-export default success
+export default Success
