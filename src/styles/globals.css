@@ -6,38 +6,31 @@
 @tailwind utilities;
 
 @layer components {
-<<<<<<< HEAD
-  .button {
-    @apply px-8 py-4 border-2 text-white bg-gray-800 rounded-lg shadow-lg shadow-gray-200 hover:shadow-md font-montserrat tracking-wider hover:scale-90 hover:shadow-gray-900 hover:text-gray-900 hover:bg-gray-100 hover:border-2 hover:border-gray-900
-        active:scale-75 transition-all duration-300 ease-out hover:translate-y-[2px] hover:ring-2 hover:ring-gray-100 whitespace-nowrap;
+  button {
+    @apply px-6 py-3 font-montserrat text-gray-900 rounded-lg bg-gray-200 hover:shadow-md whitespace-nowrap font-semibold transition-all shadow-xl shadow-gray-600 hover:shadow-gray-400 hover:bg-gray-900 hover:text-gray-200 hover:border-2 hover:border-gray-200 active:scale-90  hover:translate-y-1 duration-150;
+  }
+}
+
+@layer components {
+  tile-button {
+    @apply px-6 py-3 font-montserrat text-gray-900 rounded-lg bg-gray-200 hover:shadow-md whitespace-nowrap font-semibold transition-all shadow-xl shadow-gray-600 hover:shadow-gray-400 hover:bg-gray-900 hover:text-gray-200 hover:border-2 hover:border-gray-200 active:scale-90  hover:translate-y-1 duration-150;
   }
 }
 
 @layer components {
   .adminBtn {
     @apply font-montserrat border-2  border-gray-400 text-gray-100 flex flex-col justify-center items-center font-semibold text-xl w-80 h-20 bg-gray-600 shadow-xl hover:shadow-lg  whitespace-nowrap hover:shadow-black hover:bg-gray-200 hover:text-gray-900 hover:border-2 hover:border-gray-900 hover:scale-95 active:scale-90 hover:translate-y-2 duration-200 transition-all hover:outline-double hover:ring-2 hover:ring-white hover:ring-offset-4 rounded-md  shadow-gray-800 hover:bg-gradient-to-br from-cyan-400 to-cyan-600;
-=======
-  button {
-    @apply px-6 py-3 font-montserrat text-gray-900 rounded-lg bg-gray-200 hover:shadow-md whitespace-nowrap font-semibold transition-all shadow-xl shadow-gray-600 hover:shadow-gray-400 hover:bg-gray-900 hover:text-gray-200 hover:border-2 hover:border-gray-200 active:scale-90  hover:translate-y-1 duration-150;
->>>>>>> fc4c2af (env variables updated)
   }
 }
 .app {
   height: 100%;
   width: 100%;
 }
-/* join the family
-get fit
-get healthy
-dont sweat it
-get in the pool
-make some memories */
 
 body {
   font-family: 'DM Sans', sans-serif;
 }
 
-<<<<<<< HEAD
 .raleway {
   font-family: 'Raleway', sans-serif;
 }
@@ -55,8 +48,6 @@ h1,
   transform: scale(0.95);
 }
 
-=======
->>>>>>> fc4c2af (env variables updated)
 ::selection {
   color: var(--light);
   background: var(--red);
@@ -102,12 +93,6 @@ Adam Gonzales
 Head Coach
 Adam was born in Anaheim, and raised in Fountain Valley, California. He began swimming at Green Valley at the age of 7 in 1996. He competed at Green Valley every summer from then until he turned 18. During his time at Green Valley he set numerous team records, and began to coach from ages 15-18. Upon graduating from Fountain Valley High School, Adam went on to swim under an athletic scholarship at UC Santa Barbara, where he got a Bachelors in Philosophy and a minor in Athletic Coaching. He continued to work for Green Valley during summer breaks from college. Once finished with school, he moved back to Orange County and began working as a full-time swimming coach, both for Green Valley and for Orange County Riptide Aquatics. He also ran the swim team at Ocean View High School. He then left Green Valley and spent a couple years working in the Monterey Bay area, as Head Coach for the Gilroy Gators Swim Team, before moving back to Southern California. Now that he is back in the Orange County area, he is excited to be back where it all began for him. */
 
-<<<<<<< HEAD
 .dashMenu {
   background-image: url('/public/boySwim.webp') no-repeat center center fixed;
-=======
-.quotes {
-  font-family: 'Irish Grover', cursive;
-  font-size: 1.5rem;
->>>>>>> fc4c2af (env variables updated)
 }

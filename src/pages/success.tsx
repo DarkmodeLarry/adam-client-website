@@ -2,7 +2,7 @@ import Spinner from '../components/Spinner'
 import Image from 'next/image'
 import Link from 'next/link'
 import { type FC, useState, useEffect } from 'react'
-import { capitalize } from 'src/utils/helpers'
+import { capitalize } from 'src/utils/helper'
 import { trpc } from 'src/utils/trpc'
 
 interface successProps {}

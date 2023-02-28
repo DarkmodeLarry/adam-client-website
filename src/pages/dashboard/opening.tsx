@@ -6,7 +6,7 @@ import { type FC, useState } from 'react'
 import { Calendar } from 'react-calendar'
 import toast, { Toaster } from 'react-hot-toast'
 import { now } from 'src/constants/config'
-import { capitalize, classNames, weekdayIndexToName } from '../../utils/helpers'
+import { capitalize, classNames, weekdayIndexToName } from '../../utils/helper'
 import { trpc } from 'src/utils/trpc'
 import { prisma } from '../../server/db/client'
 
@@ -102,7 +102,7 @@ const Opening: FC<OpeningProps> = ({ days }) => {
           <span
             aria-hidden='true'
             className={classNames(
-              enabled ? 'translate-x-12' : '-translate-x-1',
+              enabled ? 'translate-x-14' : '-translate-x-1',
               'pointer-events-none inline-block h-14 w-14 bg-green-500 border-4 border-white transform rounded-full shadow ring-0 transition duration-200 ease-in-out'
             )}
           />

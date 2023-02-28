@@ -38,7 +38,6 @@ const Home = ({ setSelectedPage }: Props) => {
                 Keep On Swimming
               </h1>
               {/* IMAGES */}
-<<<<<<< HEAD
               <div className='flex mt-8 '>
                 <Image
                   alt='home-pageGraphic'
@@ -49,11 +48,6 @@ const Home = ({ setSelectedPage }: Props) => {
                 <p className=' mt-5 text-2xl text-center tracking-widest text-gray-100'>
                   With Coach Adam
                 </p>
-=======
-              <div className='flex mt-5'>
-                <Image alt='home-pageGraphic' src={Adam} className='' />
-                <p className='headingName text-center'>With Coach Adam</p>
->>>>>>> fc4c2af (env variables updated)
               </div>
             </div>
             <p className='my-8 text-lg w-full text-gray-300  text-center tracking-widest'>
@@ -74,17 +68,8 @@ const Home = ({ setSelectedPage }: Props) => {
               visible: { opacity: 1, x: 0 }
             }}
           >
-<<<<<<< HEAD
             <button className='button'>Join Now</button>
             <AnchorLink className='text-md text-gray-100 hover:text-secondary-500 hover:rounded-xl hover:border-2  hover:px-4 hover:py-2 px-4 py-2 transition-all duration-300 cursor-pointer'>
-=======
-            <button className=''>Join Now</button>
-            <AnchorLink
-              className='text-sm font-bold text-gray-200 underline hover:text-secondary-500 hover:rounded-xl hover:border-2 hover:px-4 hover:py-2 transition-all duration-300 '
-              onClick={() => setSelectedPage(SelectedPage.ContactUs)}
-              href={`#${SelectedPage.ContactUs}`}
-            >
->>>>>>> fc4c2af (env variables updated)
               <p>Learn More</p>
             </AnchorLink>
           </motion.div>

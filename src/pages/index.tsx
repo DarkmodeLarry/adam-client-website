@@ -49,13 +49,8 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
 
       <main className='min-h-screen max-w-full flex flex-col justify-center items-center '>
         <Hero setSelectedPage={setSelectedPage} />
-<<<<<<< HEAD
         <About setSelectedPage={setSelectedPage} />
         <Calendar days={days} closedDays={closedDays} />
-=======
-        <Benefits setSelectedPage={setSelectedPage} />
-        <Calendar days={days} closedDays={closedDays} setDate={setDate} date={date} />
->>>>>>> fc4c2af (env variables updated)
         <ContactUs setSelectedPage={setSelectedPage} />
       </main>
     </>

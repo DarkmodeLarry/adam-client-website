@@ -19,19 +19,12 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
     ? ''
     : 'bg-gray-900 rounded-full w-full flex justify-center items-center mt-4 transition-all duration-300 h-20 text-gray-100'
   return (
-<<<<<<< HEAD
     <nav>
       <div
         className={`${navbarBackground} fixed flex justify-evenly items-center w-full py-6 top-0 z-30`}
       >
         <div className={`flex justify-center items-center w-11/12`}>
           <div className={`${flexBetween} w-[97%] mx-auto gap-16`}>
-=======
-    <nav className='max-w-full px-2'>
-      <div className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-2`}>
-        <div className={`${flexBetween} mx-auto w-11/12`}>
-          <div className={`${flexBetween} w-full gap-32`}>
->>>>>>> fc4c2af (env variables updated)
             {/* LEFT SIDE */}
             <div className='flex items-center gap-4 font-montserrat'>
               <GiDolphin className='text-5xl text-gray-400' />
@@ -42,15 +35,10 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
 
             {/* RIGHT SIDE */}
             {isAboveMediumScreens ? (
-<<<<<<< HEAD
               <div className='flex items-center justify-between w-full'>
                 <div
                   className={`items-center flex justify-center font-montserrat gap-8 text-gray-100 text-md w-full`}
                 >
-=======
-              <div className={`${flexBetween} w-full`}>
-                <div className={`${flexBetween} gap-8 font-semibold text-gray-500 lg:text-lg`}>
->>>>>>> fc4c2af (env variables updated)
                   <NavLink
                     page='Home'
                     selectedPage={selectedPage}
@@ -67,7 +55,6 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
-<<<<<<< HEAD
 
                   <div className='flex gap-4 text- font-semibold text-gray-200'>
                     <Link href='/login' className={`${flexBetween} gap-8`}>
@@ -83,22 +70,6 @@ const Header = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                       />
                       <Calendar />
                     </div>
-=======
-                </div>
-                <div className='flex gap-4 text-xl font-semibold text-gray-200'>
-                  <Link href='/login' className={`${flexBetween} gap-8`}>
-                    <p className='font-semibold hover:shadow-2xl hover:border-2 hover:rounded-2xl px-5 py-2 transition-all hover:text-yellow-400'>
-                      Sign In
-                    </p>
-                  </Link>
-                  <div className='flex gap-3 p-2 border-2 border-transparent hover:border-2 hover:border-white hover:rounded-xl hover:text-yellow-400 transition-all duration-150'>
-                    <NavLink
-                      page='Calendar'
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                    <Calendar />
->>>>>>> fc4c2af (env variables updated)
                   </div>
                 </div>
                 <div className='flex justify-center items-center gap-4 bg-gray-200 rounded-full p-2'>

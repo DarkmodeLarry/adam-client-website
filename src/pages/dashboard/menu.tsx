@@ -5,18 +5,13 @@ import type { MultiValue } from 'react-select/dist/declarations/src'
 import { useEffect, useState } from 'react'
 import { type Categories } from '../../utils/types'
 import { MAX_FILE_SIZE } from 'src/constants/config'
-import { selectOptions } from '../../utils/helpers'
+import { selectOptions } from 'src/utils/helper'
 import { trpc } from 'src/utils/trpc'
-import { selectOptions } from 'src/utils/helpers'
-import dynamic from 'next/dynamic'
 
 const DynamicSelect = dynamic(() => import('react-select'), { ssr: false })
 
-<<<<<<< HEAD
-interface Input {
-=======
+type menuProps = {}
 type Input = {
->>>>>>> fc4c2af (env variables updated)
   name: string
   price: number
   categories: MultiValue<{ value: string; label: string }>
@@ -30,7 +25,7 @@ const initialInput = {
   file: undefined
 }
 
-const menu: FC<menuProps> = ({}) => {
+const Menu: FC<menuProps> = ({}) => {
   const [input, setInput] = useState<Input>(initialInput)
   const [preview, setPreview] = useState<string>('')
   const [error, setError] = useState<string>('')
@@ -93,7 +88,7 @@ const menu: FC<menuProps> = ({}) => {
     return key
   }
 
-  const addMenuItem = async () =2> {
+  const addMenuItem = async () => {
     const key = await handleImageUpload()
     if (!key) throw new Error('No key')
 
@@ -118,20 +113,6 @@ const menu: FC<menuProps> = ({}) => {
     if (e.target.files[0].size > MAX_FILE_SIZE) return setError('File too big')
     setInput((prev) => ({ ...prev, file: e.target.files![0] }))
   }
-
-const { fields, key, url } = await createPresignedUrl({ fileType: file.type })
-  
-const data = {
-  ...fields,
-  'Content-Type': file.type,
-  file
-}
-const formData = new FormData()
-
-Object.entries(data).forEach(([key, value]) => {
-  formData.append(key, value as any)
-})
-
 
   return (
     <>
@@ -197,18 +178,13 @@ Object.entries(data).forEach(([key, value]) => {
           </label>
 
           <button
-<<<<<<< HEAD
             className='h-12 disabled:cursor-not-allowed  font-montserrat border-2  border-gray-400 text-gray-100 flex flex-col justify-center items-center font-semibold text-xl bg-gray-600 shadow-xl hover:shadow-lg  whitespace-nowrap hover:shadow-black hover:bg-gray-200 hover:text-gray-900 hover:border-2 hover:border-gray-900 hover:scale-95 active:scale-90 hover:translate-y-2 duration-200 transition-all  rounded-sm'
-=======
-            className='h-12 disabled:cursor-not-allowed rounded-sm bg-gray-200'
->>>>>>> fc4c2af (env variables updated)
             disabled={!input.file || !input.name}
             onClick={addMenuItem}
           >
             Add menu item
           </button>
 
-<<<<<<< HEAD
           {error && (
             <p className='text-xs font-bold font-montserrat text-red-600'>
               {error}
@@ -235,29 +211,11 @@ Object.entries(data).forEach(([key, value]) => {
                 </div>
               ))}
             </div>
-=======
-        <div className='mx-auto mt-12 max-w-7xl'>
-          <p className='text-lg font-semibold text-center'>Your Menu Items:</p>
-          <div className='mt-6 mb-12 flex justify-center text-left'>
-            {menuItems?.map((menuItem) => (
-              <div key={menuItem.id} className='p-10'>
-                <p className=''>{menuItem.name}</p>
-                <div className='relative h-40 w-40'>
-                  <Image priority fill alt='' src={menuItem.url} />
-                </div>
-                <button
-                  onClick={() => handleDelete(menuItem.imageKey, menuItem.id)}
-                  className='text-xs text-red-600 '
-                >
-                  Delete
-                </button>
-              </div>
-            ))}
->>>>>>> fc4c2af (env variables updated)
           </div>
         </div>
       </div>
     </>
   )
 }
-export default menu
+
+export default Menu

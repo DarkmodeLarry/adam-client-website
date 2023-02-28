@@ -1,14 +1,8 @@
 .react-calendar {
-<<<<<<< HEAD
   min-width: 400px;
   max-width: 500px;
   height: auto;
   background: white;
-=======
-  width: 450px;
-  max-width: 100%;
-  background: #eff6ff;
->>>>>>> fc4c2af (env variables updated)
   border-radius: 15px;
   border: 1px solid rgb(209 213 219);
   font-family: Manrope, Helvetica, sans-serif;
@@ -46,12 +40,12 @@
   }
 }
 
-.react-calendar button {
+.react-calendar tile-button {
   margin: 0;
   border: 0;
   outline: none;
 }
-.react-calendar button:enabled:hover {
+.react-calendar tile-button:enabled:hover {
   cursor: pointer;
 }
 .react-calendar__navigation {
@@ -59,16 +53,16 @@
   height: 44px;
   margin-bottom: 1em;
 }
-.react-calendar__navigation button {
+.react-calendar__navigation tile-button {
   min-width: 44px;
   background: none;
 }
-.react-calendar__navigation button:disabled {
+.react-calendar__navigation tile-button:disabled {
   visibility: hidden;
   background-color: #f0f0f0;
 }
-.react-calendar__navigation button:enabled:hover,
-.react-calendar__navigation button:enabled:focus {
+.react-calendar__navigation tile-button:enabled:hover,
+.react-calendar__navigation tile-button:enabled:focus {
   background-color: #e6e6e6;
 }
 .react-calendar__month-view__weekdays {

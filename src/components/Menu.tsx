@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { type FC, useState } from 'react'
 import { HiArrowLeft } from 'react-icons/hi'
 import Select from 'react-select'
-import { capitalize, selectOptions } from 'src/utils/helpers'
+import { capitalize, selectOptions } from 'src/utils/helper'
 import { trpc } from 'src/utils/trpc'
 
 interface MenuProps {
@@ -26,7 +26,6 @@ const Menu: FC<MenuProps> = ({ selectedTime, addToCart }) => {
   })
 
   return (
-<<<<<<< HEAD
     <div className='flex flex-col w-full bg-gray-200'>
       <h2 className='flex items-center gap-4 text-2xl font-normal font-sans tracking-wider text-gray-900 px-4'>
         <HiArrowLeft
@@ -50,50 +49,6 @@ const Menu: FC<MenuProps> = ({ selectedTime, addToCart }) => {
           options={selectOptions}
         />
       </div>
-=======
-    <div className=''>
-      <div className='mx-auto max-w-2xl py-16 px-4 sm:py-24 lg:max-w-7xl'>
-        <div className='flex w-full justify-between'>
-          <h2 className='flex items-center gap-4 text-2xl font-bold tracking-tight text-gray-900'>
-            <HiArrowLeft className='cursor-pointer' onClick={() => router.push('/')} />
-            Training Options for: {format(parseISO(selectedTime), 'MMM do, yyyy')}
-          </h2>
-          <Select
-            onChange={(e) => {
-              if (e?.value === 'all') setFilter(undefined)
-              else setFilter(e?.value)
-            }}
-            className='border-none outline-none'
-            placeholder='Filter by...'
-            options={selectOptions}
-          />
-        </div>
-
-        <div className='mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
-          {filteredMenuItems?.map((menuItem) => (
-            <div key={menuItem.id} className='group relative'>
-              <div className='min-h-80 aspect-w-1 aspect-h-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 hover:opacity-75 lg:h-80 hover:duration-500 ease-linear transition-all'>
-                <div className='relative h-full w-full object-cover object-center'>
-                  <Image
-                    src={menuItem.url}
-                    alt={menuItem.name}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-              </div>
-              <div className='mt-4 flex justify-between'>
-                <div>
-                  <h3 className='mt-4 text-lg font-semibold text-gray-700'>
-                    <p>{menuItem.name}</p>
-                  </h3>
-                  <p className='mt-1 text-sm text-gray-500'>
-                    {menuItem.categories.map((c) => capitalize(c)).join(', ')}
-                  </p>
-                </div>
-                <p className='text-sm font-medium text-gray-900'>${menuItem.price.toFixed(2)}</p>
-              </div>
->>>>>>> fc4c2af (env variables updated)
 
       <div className='flex flex-col justify-center w-full items-center px-2 py-4 bg-gray-300'>
         {filteredMenuItems?.map((menuItem) => (

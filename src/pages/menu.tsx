@@ -56,7 +56,6 @@ const MenuPage: FC = () => {
 
   return (
     <>
-<<<<<<< HEAD
       <Cart
         removeFromCart={removeFromCart}
         open={showCart}
@@ -82,37 +81,6 @@ const MenuPage: FC = () => {
           <Spinner />
         </div>
       )}
-=======
-      <div className='h-full w-full bg-gradient-to-br from-blue-100 to-blue-300 flex flex-col justify-center items-center'>
-        <Cart
-          removeFromCart={removeFromCart}
-          open={showCart}
-          setOpen={setShowCart}
-          products={productsInCart}
-        />
-        {isFetchedAfterMount && selectedTime ? (
-          <div className='mx-auto mt-12 max-w-7xl sm:px-6 lg:px-8'>
-            {/* Cart Icon */}
-            <div className='flex w-full justify-end'>
-              <button
-                type='button'
-                onClick={() => setShowCart((prev) => !prev)}
-                className='flex items-center justify-center rounded-lg bg-gray-200 p-3 text-2xl font-medium text-indigo-600'
-              >
-                <BsCart className='mr-2 text-2xl' />
-                {productsInCart.reduce((acc, item) => acc + item.quantity, 0)}
-              </button>
-            </div>
-
-            <Menu addToCart={addToCart} selectedTime={selectedTime} />
-          </div>
-        ) : (
-          <div className='flex h-screen items-center justify-center'>
-            <Spinner />
-          </div>
-        )}
-      </div>
->>>>>>> fc4c2af (env variables updated)
     </>
   )
 }
