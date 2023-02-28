@@ -12,8 +12,8 @@
 }
 
 @layer components {
-  tile-button {
-    @apply px-6 py-3 font-montserrat text-gray-900 rounded-lg bg-gray-200 hover:shadow-md whitespace-nowrap font-semibold transition-all shadow-xl shadow-gray-600 hover:shadow-gray-400 hover:bg-gray-900 hover:text-gray-200 hover:border-2 hover:border-gray-200 active:scale-90  hover:translate-y-1 duration-150;
+  .tile-button {
+    @apply px-6 py-3 font-montserrat text-gray-900 rounded-lg bg-gray-200 hover:shadow-md whitespace-nowrap font-semibold transition-all shadow-lg shadow-gray-600 hover:shadow-gray-400 hover:bg-gray-900 hover:text-gray-200 hover:border-2 hover:border-gray-200 active:scale-90  hover:translate-y-1 duration-150;
   }
 }
 
@@ -86,13 +86,4 @@ h1,
     rgb(14, 165, 233),
     rgb(255, 255, 255)
   );
-}
-
-/* 
-Adam Gonzales
-Head Coach
-Adam was born in Anaheim, and raised in Fountain Valley, California. He began swimming at Green Valley at the age of 7 in 1996. He competed at Green Valley every summer from then until he turned 18. During his time at Green Valley he set numerous team records, and began to coach from ages 15-18. Upon graduating from Fountain Valley High School, Adam went on to swim under an athletic scholarship at UC Santa Barbara, where he got a Bachelors in Philosophy and a minor in Athletic Coaching. He continued to work for Green Valley during summer breaks from college. Once finished with school, he moved back to Orange County and began working as a full-time swimming coach, both for Green Valley and for Orange County Riptide Aquatics. He also ran the swim team at Ocean View High School. He then left Green Valley and spent a couple years working in the Monterey Bay area, as Head Coach for the Gilroy Gators Swim Team, before moving back to Southern California. Now that he is back in the Orange County area, he is excited to be back where it all began for him. */
-
-.dashMenu {
-  background-image: url('/public/boySwim.webp') no-repeat center center fixed;
 }
