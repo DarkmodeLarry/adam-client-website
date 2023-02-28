@@ -9,6 +9,12 @@ module.exports = {
         montserrat: ['Montserrat', 'sans-serif']
       }
     },
+    variants: {
+      extend: {
+        backgroundColor: ['active'],
+        fontSize: ['hover']
+      }
+    },
     screens: {
       xs: '480px',
       sm: { max: '767px' },

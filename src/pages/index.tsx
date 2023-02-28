@@ -10,6 +10,7 @@ import { prisma } from '../server/db/client'
 import { formatISO } from 'date-fns'
 import type { Day } from '@prisma/client'
 import { SelectedPage } from '../shared/types'
+import type { DateTime } from '../utils/types'
 
 interface HomeProps {
   days: Day[]
@@ -21,6 +22,10 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
     SelectedPage.Home
   )
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true)
+  const [date, setDate] = useState<DateTime>({
+    justDate: null,
+    dateTime: null
+  })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,8 +49,13 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
 
       <main className='min-h-screen max-w-full flex flex-col justify-center items-center '>
         <Hero setSelectedPage={setSelectedPage} />
+<<<<<<< HEAD
         <About setSelectedPage={setSelectedPage} />
         <Calendar days={days} closedDays={closedDays} />
+=======
+        <Benefits setSelectedPage={setSelectedPage} />
+        <Calendar days={days} closedDays={closedDays} setDate={setDate} date={date} />
+>>>>>>> fc4c2af (env variables updated)
         <ContactUs setSelectedPage={setSelectedPage} />
       </main>
     </>

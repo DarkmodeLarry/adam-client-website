@@ -1,8 +1,14 @@
 .react-calendar {
+<<<<<<< HEAD
   min-width: 400px;
   max-width: 500px;
   height: auto;
   background: white;
+=======
+  width: 450px;
+  max-width: 100%;
+  background: #eff6ff;
+>>>>>>> fc4c2af (env variables updated)
   border-radius: 15px;
   border: 1px solid rgb(209 213 219);
   font-family: Manrope, Helvetica, sans-serif;

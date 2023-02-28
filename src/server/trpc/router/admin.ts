@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { s3 } from '@lib/s3'
+=======
+import { s3 } from '../../../lib/s3'
+>>>>>>> fc4c2af (env variables updated)
 import { TRPCError } from '@trpc/server'
 import cookie from 'cookie'
 import { SignJWT } from 'jose'
@@ -79,6 +83,7 @@ export const adminRouter = router({
         name: z.string(),
         price: z.number(),
         imageKey: z.string(),
+<<<<<<< HEAD
         categories: z.array(
           z.union([
             z.literal('private'),
@@ -86,6 +91,9 @@ export const adminRouter = router({
             z.literal('other')
           ])
         )
+=======
+        categories: z.array(z.union([z.literal('private'), z.literal('group'), z.literal('other')]))
+>>>>>>> fc4c2af (env variables updated)
       })
     )
     .mutation(async ({ ctx, input }) => {
