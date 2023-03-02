@@ -9,7 +9,7 @@ import Dolphin from '../../public/dolphins.png'
 const Login: FC = () => {
   const router = useRouter()
 
-  const { mutate: login, isError } = trpc.admin.login.useMutation({
+  const { mutate: login, error } = trpc.admin.login.useMutation({
     onSuccess: () => {
       router.push('/dashboard')
     }
@@ -21,19 +21,13 @@ const Login: FC = () => {
   })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target
+    const { name, value } = e.target
     setInput((prev) => ({ ...prev, [name]: value }))
   }
 
   return (
     <div className='loginPage flex flex-col min-h-full items-center justify-center border-cyan-300 z-30 p-5'>
-      <Image
-        className=''
-        src={Dolphin}
-        alt='Workflow'
-        height={200}
-        width={200}
-      />
+      <Image className='' src={Dolphin} alt='Workflow' height={200} width={200} />
       <div className='w-full h-full max-w-md space-y-10 shadow-2xl border-2 border-transparent rounded-2xl px-10 pb-16'>
         <div>
           <h2 className='mt-6 text-center text-3xl font-bold text-gray-900'>
@@ -43,9 +37,7 @@ const Login: FC = () => {
         <form className='mt-8 space-y-6'>
           <input type='hidden' name='remember' defaultValue='true' />
           <div className='-space-y-px rounded-md shadow-sm'>
-            <p className='pb-1 text-sm text-red-600'>
-              {isError && 'Invalid login credentials'}
-            </p>
+            <p className='pb-1 text-sm text-red-600'>{error && 'Invalid login credentials'}</p>
             <div>
               <label htmlFor='email-address' className='sr-only'>
                 Email address
@@ -88,19 +80,13 @@ const Login: FC = () => {
                 type='checkbox'
                 className='h-4 w-4  py-10 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
               />
-              <label
-                htmlFor='remember-me'
-                className='ml-2 block text-sm text-gray-900'
-              >
+              <label htmlFor='remember-me' className='ml-2 block text-sm text-gray-900'>
                 Remember me
               </label>
             </div>
 
             <div className='text-sm'>
-              <a
-                href='#'
-                className='font-medium text-indigo-600 hover:text-indigo-500'
-              >
+              <a href='#' className='font-medium text-indigo-600 hover:text-indigo-500'>
                 Forgot your password?
               </a>
             </div>
@@ -127,10 +113,7 @@ const Login: FC = () => {
         </form>
         <p className='mt-2 text-center text-sm text-gray-600'>
           Or{' '}
-          <a
-            href='#'
-            className='font-medium text-indigo-600 hover:text-indigo-500'
-          >
+          <a href='#' className='font-medium text-indigo-600 hover:text-indigo-500'>
             Create your account instead
           </a>
         </p>

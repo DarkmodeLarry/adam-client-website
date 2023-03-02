@@ -1,5 +1,7 @@
-import Spinner from './Spinner'
+'use client'
+import { Spinner } from '@chakra-ui/react'
 import { Dialog, Transition } from '@headlessui/react'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Fragment, type Dispatch, type FC, type SetStateAction } from 'react'
 import { HiX } from 'react-icons/hi'
@@ -18,11 +20,7 @@ const Cart: FC<CartProps> = ({ open, setOpen, products, removeFromCart }) => {
 
   // tRPC
   const { data: itemsInCart } = trpc.menu.getCartItems.useQuery(products)
-  const {
-    mutate: checkout,
-    isLoading
-    // error - error handling for client side
-  } = trpc.checkout.checkoutSession.useMutation({
+  const { mutate: checkout, isLoading } = trpc.checkout.checkoutSession.useMutation({
     onSuccess: ({ url }) => {
       router.push(url)
     },
@@ -33,8 +31,7 @@ const Cart: FC<CartProps> = ({ open, setOpen, products, removeFromCart }) => {
 
   const subtotal = (
     itemsInCart?.reduce(
-      (acc, item) =>
-        acc + item.price * itemsInCart.find((i) => i.id === item.id)!.quantity!,
+      (acc, item) => acc + item.price * itemsInCart.find((i) => i.id === item.id)!.quantity!,
       0
     ) ?? 0
   ).toFixed(2)
@@ -87,18 +84,14 @@ const Cart: FC<CartProps> = ({ open, setOpen, products, removeFromCart }) => {
 
                       <div className='mt-8'>
                         <div className='flow-root'>
-                          <ul
-                            role='list'
-                            className='-my-6 divide-y divide-gray-200'
-                          >
+                          <ul role='list' className='-my-6 divide-y divide-gray-200'>
                             {itemsInCart?.map((item) => {
-                              const thisItem = products.find(
-                                (product) => product.id === item.id
-                              )
+                              const thisItem = products.find((product) => product.id === item.id)
                               return (
                                 <li key={item.id} className='flex py-6'>
                                   <div className='h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200'>
-                                    <img
+                                    <Image
+                                      unoptimized={true}
                                       src={item.url}
                                       alt={item.name}
                                       className='h-full w-full object-cover object-center'
@@ -111,27 +104,19 @@ const Cart: FC<CartProps> = ({ open, setOpen, products, removeFromCart }) => {
                                         <h3>
                                           <p>{item.name}</p>
                                         </h3>
-                                        <p className='ml-4'>
-                                          ${item.price.toFixed(2)}
-                                        </p>
+                                        <p className='ml-4'>${item.price.toFixed(2)}</p>
                                       </div>
                                       <p className='mt-1 text-sm text-gray-500'>
-                                        {item.categories
-                                          .map((c) => capitalize(c))
-                                          .join(', ')}
+                                        {item.categories.map((c) => capitalize(c)).join(', ')}
                                       </p>
                                     </div>
                                     <div className='flex flex-1 items-end justify-between text-sm'>
-                                      <p className='text-gray-500'>
-                                        Qty {thisItem?.quantity}
-                                      </p>
+                                      <p className='text-gray-500'>Qty {thisItem?.quantity}</p>
 
                                       <div className='flex'>
                                         <button
                                           type='button'
-                                          onClick={() =>
-                                            removeFromCart(item.id)
-                                          }
+                                          onClick={() => removeFromCart(item.id)}
                                           className='font-medium text-indigo-600 hover:text-indigo-500'
                                         >
                                           Remove

@@ -1,10 +1,9 @@
+import { publicProcedure, router } from '../trpc'
 import { s3 } from '@lib/s3'
-import { router, publicProcedure } from '../trpc'
 import { z } from 'zod'
 
 // sleep
-export const sleep = (ms: number) =>
-  new Promise((resolve) => setTimeout(resolve, ms))
+export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export const menuRouter = router({
   /**
@@ -21,12 +20,13 @@ export const menuRouter = router({
         return {
           ...menuItem,
           url: await s3.getSignedUrlPromise('getObject', {
-            Bucket: 'adam-swim',
+            Bucket: 'client-adam-swimcoach',
             Key: menuItem.imageKey
           })
         }
       })
     )
+
     return withUrls
   }),
 
@@ -52,7 +52,7 @@ export const menuRouter = router({
           return {
             ...menuItem,
             url: await s3.getSignedUrlPromise('getObject', {
-              Bucket: 'adam-swim',
+              Bucket: 'client-adam-swimcoach',
               Key: menuItem.imageKey
             }),
             quantity: input.find((item) => item.id === menuItem.id)?.quantity

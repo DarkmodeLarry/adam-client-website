@@ -31,8 +31,7 @@ export const checkoutRouter = router({
           })
         ).map((p) => ({
           ...p,
-          quantity:
-            input.products.find((product) => product.id === p.id)?.quantity || 0
+          quantity: input.products.find((product) => product.id === p.id)?.quantity || 0
         }))
 
         if (productsInCart.length !== input.products.length) {

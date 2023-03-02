@@ -2,9 +2,8 @@ import type { Day } from '@prisma/client'
 import { format, formatISO, isBefore, parse } from 'date-fns'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { type FC } from 'react'
-import { useState, useEffect } from 'react'
-import { OPENING_HOURS_INTERVAL, now } from '../constants/config'
+import { type FC, useEffect, useState } from 'react'
+import { OPENING_HOURS_INTERVAL, now } from 'src/constants/config'
 import { getOpeningTimes, roundToNearestMinutes } from 'src/utils/helper'
 import type { DateTime } from 'src/utils/types'
 
@@ -13,11 +12,6 @@ const DynamicCalendar = dynamic(() => import('react-calendar'), { ssr: false })
 interface CalendarProps {
   days: Day[]
   closedDays: string[] // as ISO strings
-}
-
-interface DateType {
-  justDate: Date | null
-  dateTime: Date | null
 }
 
 const CalendarComponent: FC<CalendarProps> = ({ days, closedDays }) => {
@@ -47,24 +41,20 @@ const CalendarComponent: FC<CalendarProps> = ({ days, closedDays }) => {
   return (
     <section
       id='calendar'
-      className='calendar  justify-center w-full bg-gray-900 flex flex-col items-center '
+      className='calendar  justify-center w-full bg-gray-800 flex flex-col items-center '
     >
       <h1 className='text-2xl md:text-4xl font-montserrat my-10 text-center text-white'>
         Select an Appointment
       </h1>
       <div className='flex flex-col md:flex-row w-full items-center'>
         <div className='w-1/2 flex flex-col gap-10 justify-center items-center '>
-          <p className='text-2xl text-gray-200 w-full text-center font-montserrat'>
-            Pick a Date
-          </p>
+          <p className='text-2xl text-gray-200 w-full text-center font-montserrat'>Pick a Date</p>
           <DynamicCalendar
             minDate={now}
             className='REACT-CALENDAR p-2 md:mb-10'
             view='month'
             tileDisabled={({ date }) => closedDays.includes(formatISO(date))}
-            onClickDay={(date) =>
-              setDate((prev) => ({ ...prev, justDate: date }))
-            }
+            onClickDay={(date) => setDate((prev) => ({ ...prev, justDate: date }))}
           />
         </div>
 
@@ -78,10 +68,8 @@ const CalendarComponent: FC<CalendarProps> = ({ days, closedDays }) => {
                 <div key={`time-${i}`} className=''>
                   <button
                     type='button'
-                    className='flex font-semibold text-md text-black w-28 h-10 justify-center items-center bg-gray-100 shadow-md shadow-gray-500 rounded-lg border-2  transition-all duration-300 ease-in-out hover:scale-95 hover:bg-gray-700 hover:border-white hover:text-gray-100'
-                    onClick={() =>
-                      setDate((prev) => ({ ...prev, dateTime: time }))
-                    }
+                    className='flex font-semibold text-md text-black w-28 h-10 justify-center items-center bg-gray-100 shadow-md shadow-gray-500 rounded-lg border-2  transition-all duration-150 ease-out hover:scale-[.99] hover:bg-gray-700 hover:border-white hover:text-gray-100'
+                    onClick={() => setDate((prev) => ({ ...prev, dateTime: time }))}
                   >
                     {format(time, 'hh:mm aa')}
                   </button>

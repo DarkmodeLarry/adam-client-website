@@ -3,35 +3,29 @@ import Menu from '@components/Menu'
 import Spinner from '@components/Spinner'
 import { parseISO } from 'date-fns'
 import { useRouter } from 'next/router'
-import { type FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { now } from 'src/constants/config'
 import { trpc } from 'src/utils/trpc'
-import { BsCart } from 'react-icons/bs'
+import { RiShoppingCartLine } from 'react-icons/ri'
 
 const MenuPage: FC = () => {
   const router = useRouter()
 
   const [selectedTime, setSelectedTime] = useState<string | null>(null) // as ISO string
-  const { isFetchedAfterMount } = trpc.menu.checkMenuStatus.useQuery(
-    undefined,
-    {
-      onError: () => {
-        // Check for validity of selectedTime failed
-        // Handle error accordingly (e.g. redirect to home page)
-      }
+  const { isFetchedAfterMount } = trpc.menu.checkMenuStatus.useQuery(undefined, {
+    onError: () => {
+      // Check for validity of selectedTime failed
+      // Handle error accordingly (e.g. redirect to home page)
     }
-  )
+  })
   const [showCart, setShowCart] = useState<boolean>(false)
-  const [productsInCart, setProductsInCart] = useState<
-    { id: string; quantity: number }[]
-  >([])
+  const [productsInCart, setProductsInCart] = useState<{ id: string; quantity: number }[]>([])
   const addToCart = (id: string, quantity: number) => {
     setProductsInCart((prev) => {
       const existing = prev.find((item) => item.id === id)
       if (existing) {
         return prev.map((item) => {
-          if (item.id === id)
-            return { ...item, quantity: item.quantity + quantity }
+          if (item.id === id) return { ...item, quantity: item.quantity + quantity }
           return item
         })
       }
@@ -63,16 +57,17 @@ const MenuPage: FC = () => {
         products={productsInCart}
       />
       {isFetchedAfterMount && selectedTime ? (
-        <div className='flex flex-col justify-center items-center w-full mt-10'>
+        <div className='flex flex-col justify-center items-center w-full min-h-screen bg-gray-900'>
           {/* Cart Icon */}
 
           <Menu addToCart={addToCart} selectedTime={selectedTime} />
           <button
             type='button'
             onClick={() => setShowCart((prev) => !prev)}
-            className='bg-green-500 px-10 rounded-lg flex gap-4 justify-center items-center border-2 border-gray-600 hover:shadow-lg'
+            className='bg-green-400 px-10 rounded-lg flex gap-4 justify-center items-center border-2 border-gray-600 hover:shadow-lg shadow-gray-400 shadow-md text-xl text-gray-900 relative font-bold hover:bg-gray-600 hover:text-gray-100 hover:border-2 hover:border-gray-100 mb-5 transition-all duration-200 '
           >
-            <BsCart className='m-2 text-4xl text-gray-800' />
+            <span className='px-6 py-4'>Checkout</span>
+            <RiShoppingCartLine className='h-14 w-14 text-gray-900 absolute right-5 bottom-0' />
             {productsInCart.reduce((acc, item) => acc + item.quantity, 0)}
           </button>
         </div>

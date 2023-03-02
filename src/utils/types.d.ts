@@ -1,6 +1,6 @@
-import { type categories } from '../constants/config'
+import type { categories } from 'src/constants/config'
 
-export type DateTime = {
+type DateTime = {
   justDate: Date | null
   dateTime: Date | null
 }

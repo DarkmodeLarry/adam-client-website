@@ -1,4 +1,4 @@
-import { s3 } from '../../../lib/s3'
+import { s3 } from '@lib/s3'
 import { TRPCError } from '@trpc/server'
 import cookie from 'cookie'
 import { SignJWT } from 'jose'
@@ -10,15 +10,12 @@ import { adminProcedure, publicProcedure, router } from '../trpc'
 
 export const adminRouter = router({
   login: publicProcedure
-    .input(z.object({ email: z.string() /*.email() */, password: z.string() }))
+    .input(z.object({ email: z.string(), password: z.string() }))
     .mutation(async ({ input, ctx }) => {
       const { res } = ctx
       const { email, password } = input
 
-      if (
-        email === process.env.ADMIN_EMAIL &&
-        password === process.env.ADMIN_PASSWORD
-      ) {
+      if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
         // validating
         // user is authenticated as admin
         const token = await new SignJWT({})
@@ -55,9 +52,9 @@ export const adminRouter = router({
       const { url, fields } = (await new Promise((resolve, reject) => {
         s3.createPresignedPost(
           {
-            Bucket: 'adam-swim',
+            Bucket: 'client-adam-swimcoach',
             Fields: { key },
-            Expires: 60,
+            Expires: 60, // seconds
             Conditions: [
               ['content-length-range', 0, MAX_FILE_SIZE],
               ['starts-with', '$Content-Type', 'image/']
@@ -76,26 +73,20 @@ export const adminRouter = router({
   addMenuItem: adminProcedure
     .input(
       z.object({
+        imageKey: z.string(),
         name: z.string(),
         price: z.number(),
-        imageKey: z.string(),
-        categories: z.array(
-          z.union([
-            z.literal('private'),
-            z.literal('group'),
-            z.literal('other')
-          ])
-        )
+        categories: z.array(z.union([z.literal('private'), z.literal('group'), z.literal('other')]))
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { name, price, imageKey, categories } = input
+      const { imageKey, name, categories, price } = input
       const menuItem = await ctx.prisma.menuItem.create({
         data: {
-          name,
-          price,
           imageKey,
-          categories
+          name,
+          categories,
+          price
         }
       })
 
@@ -104,13 +95,14 @@ export const adminRouter = router({
 
   deleteMenuItem: adminProcedure
     .input(z.object({ imageKey: z.string(), id: z.string() }))
-    .mutation(async ({ ctx, input }) => {
+    .mutation(async ({ input, ctx }) => {
       // Delete image from s3
-      const { id, imageKey } = input
-      await s3.deleteObject({ Bucket: 'adam-swim', Key: imageKey }).promise()
+      const { imageKey, id } = input
+      await s3.deleteObject({ Bucket: 'client-adam-swimcoach', Key: imageKey }).promise()
       // Delete image from db
-      const menuItem = await ctx.prisma.menuItem.delete({ where: { id } })
 
-      return menuItem
+      await ctx.prisma.menuItem.delete({ where: { id } })
+
+      return true
     })
 })

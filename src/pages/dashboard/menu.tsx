@@ -1,17 +1,15 @@
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { type ChangeEvent, type FC } from 'react'
+import { type ChangeEvent, type FC, useEffect, useState } from 'react'
 import type { MultiValue } from 'react-select/dist/declarations/src'
-import { useEffect, useState } from 'react'
-import { type Categories } from '../../utils/types'
 import { MAX_FILE_SIZE } from 'src/constants/config'
 import { selectOptions } from 'src/utils/helper'
 import { trpc } from 'src/utils/trpc'
+import type { Categories } from 'src/utils/types'
 
 const DynamicSelect = dynamic(() => import('react-select'), { ssr: false })
 
-type menuProps = {}
-type Input = {
+interface Input {
   name: string
   price: number
   categories: MultiValue<{ value: string; label: string }>
@@ -25,7 +23,7 @@ const initialInput = {
   file: undefined
 }
 
-const Menu: FC<menuProps> = ({}) => {
+const Menu: FC = () => {
   const [input, setInput] = useState<Input>(initialInput)
   const [preview, setPreview] = useState<string>('')
   const [error, setError] = useState<string>('')
@@ -47,23 +45,21 @@ const Menu: FC<menuProps> = ({}) => {
 
   // tRPC
   const { mutateAsync: addItem } = trpc.admin.addMenuItem.useMutation()
-  const { mutateAsync: createPresignedUrl } =
-    trpc.admin.createPresignedUrl.useMutation()
+  const { mutateAsync: createPresignedUrl } = trpc.admin.createPresignedUrl.useMutation()
   const { data: menuItems, refetch } = trpc.menu.getMenuItems.useQuery()
-  const { mutateAsync: deleteMenuItem } =
-    trpc.admin.deleteMenuItem.useMutation()
+  const { mutateAsync: deleteMenuItem } = trpc.admin.deleteMenuItem.useMutation()
 
   const handleDelete = async (imageKey: string, id: string) => {
-    await deleteMenuItem({ id, imageKey })
+    await deleteMenuItem({ imageKey, id })
     refetch()
   }
 
-  const handleImageUpload = async () => {
+  const handleImgUpload = async () => {
     const { file } = input
     if (!file) return
 
     // get url from aws to upload file to:
-    const { fields, key, url } = await createPresignedUrl({
+    const { url, fields, key } = await createPresignedUrl({
       fileType: file.type
     })
 
@@ -89,15 +85,13 @@ const Menu: FC<menuProps> = ({}) => {
   }
 
   const addMenuItem = async () => {
-    const key = await handleImageUpload()
+    const key = await handleImgUpload()
     if (!key) throw new Error('No key')
 
     await addItem({
-      name: input.name,
       imageKey: key,
-      categories: input.categories.map(
-        (c) => c.value as Exclude<Categories, 'all'>
-      ),
+      name: input.name,
+      categories: input.categories.map((c) => c.value as Exclude<Categories, 'all'>),
       price: input.price
     })
 
@@ -133,9 +127,7 @@ const Menu: FC<menuProps> = ({}) => {
             className='h-12 rounded-sm bg-gray-200 pl-3'
             type='number'
             placeholder='price'
-            onChange={(e) =>
-              setInput((prev) => ({ ...prev, price: Number(e.target.value) }))
-            }
+            onChange={(e) => setInput((prev) => ({ ...prev, price: Number(e.target.value) }))}
             value={input.price}
           />
 
@@ -156,12 +148,7 @@ const Menu: FC<menuProps> = ({}) => {
             <div className='flex h-full items-center justify-center text-white text-center bg-gray-600'>
               {preview ? (
                 <div className='relative w-full h-3/4 bg-gray-600'>
-                  <Image
-                    alt='preview'
-                    style={{ objectFit: 'contain' }}
-                    fill
-                    src={preview}
-                  />
+                  <Image alt='preview' style={{ objectFit: 'contain' }} fill src={preview} />
                 </div>
               ) : (
                 <span>Select image</span>
@@ -171,7 +158,7 @@ const Menu: FC<menuProps> = ({}) => {
               name='file'
               id='file'
               onChange={handleFileSelect}
-              accept='image/jpeg image/png image/jpg image/webp'
+              accept='image/jpeg image/png image/jpg'
               type='file'
               className='sr-only '
             />
@@ -184,33 +171,26 @@ const Menu: FC<menuProps> = ({}) => {
           >
             Add menu item
           </button>
+        </div>
+        {error && <p className='text-xs font-bold font-montserrat text-red-600'>{error}</p>}
 
-          {error && (
-            <p className='text-xs font-bold font-montserrat text-red-600'>
-              {error}
-            </p>
-          )}
-
-          <div className='mx-auto max-w-7xl mt-10'>
-            <p className='text-semibold text-center text-2xl'>
-              Your Current Menu Items:
-            </p>
-            <div className='grid grid-cols-3 mb-12 mt-10 gap-4'>
-              {menuItems?.map((menuItem) => (
-                <div key={menuItem.id} className=''>
-                  <p className='font-semibold text-center '>{menuItem.name}</p>
-                  <div className='border-2 relative h-28 w-28 border-cyan-900 rounded-lg bg-gray-200'>
-                    <Image priority fill alt='' src={menuItem.url} />
-                  </div>
-                  <button
-                    onClick={() => handleDelete(menuItem.imageKey, menuItem.id)}
-                    className='text-md text-red-600 mt-2 mx-auto w-full font-md hover:font-extrabold transition-all duration-200'
-                  >
-                    Delete
-                  </button>
+        <div className='mx-auto max-w-7xl mt-10'>
+          <p className='text-semibold text-center text-2xl'>Your Current Menu Items:</p>
+          <div className='grid grid-cols-3 mb-12 mt-10 gap-4'>
+            {menuItems?.map((menuItem) => (
+              <div key={menuItem.id}>
+                <p className='font-semibold text-center '>{menuItem.name}</p>
+                <div className='border-2 relative h-40 w-40 border-cyan-900 rounded-lg bg-gray-200'>
+                  <Image priority fill alt='' src={menuItem.url} />
                 </div>
-              ))}
-            </div>
+                <button
+                  onClick={() => handleDelete(menuItem.imageKey, menuItem.id)}
+                  className='text-md text-red-600 mt-2 mx-auto w-full font-md hover:font-extrabold transition-all duration-200'
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       </div>

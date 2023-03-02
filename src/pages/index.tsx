@@ -1,16 +1,14 @@
-'use client'
-import Header from '../scenes/header'
+import CalendarComponent from '@components/Calendar'
+import type { Day } from '@prisma/client'
+import { formatISO } from 'date-fns'
+import type { NextPage } from 'next'
 import Hero from '../scenes/Home'
 import ContactUs from '../scenes/contactUs'
 import About from '../scenes/about'
 import { useState, useEffect } from 'react'
-import { type NextPage } from 'next'
-import Calendar from '../components/Calendar'
 import { prisma } from '../server/db/client'
-import { formatISO } from 'date-fns'
-import type { Day } from '@prisma/client'
 import { SelectedPage } from '../shared/types'
-import type { DateTime } from '../utils/types'
+import Header from 'src/scenes/header'
 
 interface HomeProps {
   days: Day[]
@@ -18,14 +16,8 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
-  const [selectedPage, setSelectedPage] = useState<SelectedPage>(
-    SelectedPage.Home
-  )
+  const [selectedPage, setSelectedPage] = useState<SelectedPage>(SelectedPage.Home)
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true)
-  const [date, setDate] = useState<DateTime>({
-    justDate: null,
-    dateTime: null
-  })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +42,7 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
       <main className='min-h-screen max-w-full flex flex-col justify-center items-center '>
         <Hero setSelectedPage={setSelectedPage} />
         <About setSelectedPage={setSelectedPage} />
-        <Calendar days={days} closedDays={closedDays} />
+        <CalendarComponent days={days} closedDays={closedDays} />
         <ContactUs setSelectedPage={setSelectedPage} />
       </main>
     </>
@@ -59,9 +51,7 @@ const Home: NextPage<HomeProps> = ({ days, closedDays }) => {
 
 export async function getServerSideProps() {
   const days = await prisma.day.findMany()
-  const closedDays = (await prisma.closedDay.findMany()).map((d) =>
-    formatISO(d.date)
-  )
+  const closedDays = (await prisma.closedDay.findMany()).map((d) => formatISO(d.date))
   return { props: { days, closedDays } }
 }
 export default Home

@@ -7,7 +7,7 @@ type Props = {
 }
 
 const ContactUs = ({ setSelectedPage }: Props) => {
-  const inputStyles = `mb-5 w-full rounded-lg bg-gray-900 shadow-2xl shadow-[#f2f2f2]]
+  const inputStyles = `my-2 w-full rounded-lg bg-[#f2f2f2] shadow-2xl shadow-
   px-5 py-3 placeholder-gray-400 text-white`
 
   const {
@@ -24,10 +24,11 @@ const ContactUs = ({ setSelectedPage }: Props) => {
   }
 
   return (
-    <section id='contactus' className='mx-auto w-5/6 max-w-full h-full my-8'>
-      <motion.div
-        onViewportEnter={() => setSelectedPage(SelectedPage.ContactUs)}
-      >
+    <section
+      id='contactus'
+      className='mx-auto  flex h-[700px] w-full max-w-full  flex-col  items-center justify-center  bg-gray-900 text-gray-100 '
+    >
+      <motion.div className='mx-5' onViewportEnter={() => setSelectedPage(SelectedPage.ContactUs)}>
         {/* HEADER */}
         <motion.div
           className='md:w-3/5'
@@ -40,7 +41,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
             visible: { opacity: 1, x: 0 }
           }}
         >
-          <h2 className=''>DO YOU HAVE ANY QUESTIONS?</h2>
+          <h2 className='headings text-2xl tracking-wider'>DO YOU HAVE ANY QUESTIONS?</h2>
 
           <p className='my-5'>Contact Adam for more information!</p>
         </motion.div>
@@ -74,10 +75,9 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                 })}
               />
               {errors.name && (
-                <p className='mt-1 text-primary-500'>
+                <p className='text-primary-500 mt-1'>
                   {errors.name.type === 'required' && 'This field is required.'}
-                  {errors.name.type === 'maxLength' &&
-                    'Max length is 100 char.'}
+                  {errors.name.type === 'maxLength' && 'Max length is 100 char.'}
                 </p>
               )}
 
@@ -91,9 +91,8 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                 })}
               />
               {errors.email && (
-                <p className='mt-1 text-primary-500'>
-                  {errors.email.type === 'required' &&
-                    'This field is required.'}
+                <p className='text-primary-500 mt-1'>
+                  {errors.email.type === 'required' && 'This field is required.'}
                   {errors.email.type === 'pattern' && 'Invalid email address.'}
                 </p>
               )}
@@ -109,17 +108,15 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                 })}
               />
               {errors.message && (
-                <p className='mt-1 text-primary-500'>
-                  {errors.message.type === 'required' &&
-                    'This field is required.'}
-                  {errors.message.type === 'maxLength' &&
-                    'Max length is 2000 char.'}
+                <p className='text-primary-500 mt-1'>
+                  {errors.message.type === 'required' && 'This field is required.'}
+                  {errors.message.type === 'maxLength' && 'Max length is 2000 char.'}
                 </p>
               )}
 
               <button
                 type='submit'
-                className='border-2 hover:bg-gray-400 hover:text-gray-900 transition-colors ease-in duration-150 rounded-lg px-3 py-2 bg-gray-900 text-white font-semibold tracking-widest'
+                className='rounded-lg border-2 bg-gray-900 px-3 py-2 font-semibold tracking-widest text-white transition-colors duration-150 ease-in hover:bg-gray-400 hover:text-gray-900'
               >
                 SEND IT
               </button>
@@ -137,7 +134,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
               visible: { opacity: 1, y: 0 }
             }}
           >
-            <div className='w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-evolvetext'></div>
+            <div className='md:before:content-evolvetext w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1]'></div>
           </motion.div>
         </div>
       </motion.div>
